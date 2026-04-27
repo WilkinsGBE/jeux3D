@@ -8685,7 +8685,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -203.95226, y: -121.70211, z: -624.8465}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 193252302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20206,15 +20206,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 446898, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.000000021855694
       objectReference: {fileID: 0}
     - target: {fileID: 446898, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 446898, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 446898, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20234,10 +20234,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 158272, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1951860233}
-    - targetCorrespondingSourceObject: {fileID: 158272, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1951860232}
+      addedObject: {fileID: 1951860224}
   m_SourcePrefab: {fileID: 100100000, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
 --- !u!1001 &906814270
 PrefabInstance:
@@ -21676,7 +21673,7 @@ Transform:
   m_GameObject: {fileID: 965386751}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9999705, z: -0, w: 0.0076847007}
-  m_LocalPosition: {x: 255.7, y: 70.22, z: 396.5}
+  m_LocalPosition: {x: 253.9, y: 70.22, z: 382.3}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24072,6 +24069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080309739}
   - component: {fileID: 1080309738}
+  - component: {fileID: 1080309737}
   - component: {fileID: 1080309736}
   - component: {fileID: 1080309740}
   - component: {fileID: 1080309741}
@@ -24094,9 +24092,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3968855a3c7e7e94a968b29a314edd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BridgeZone
-  door: {fileID: 1951860233}
+  bridgeController: {fileID: 1796658691}
   inventory: {fileID: 772015910}
-  panel: {fileID: 0}
+--- !u!114 &1080309737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080309735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11c834a27260d34fbe5ab9a77faf2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgeController
+  door: {fileID: 1951860228}
+  openRotation: {x: 0, y: 90, z: 0}
 --- !u!65 &1080309738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24116,7 +24127,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1346.3838, y: 10, z: 156.91791}
+  m_Size: {x: 1346.3838, y: 5, z: 156.91791}
   m_Center: {x: 530.43677, y: -0.5, z: 3.9768982}
 --- !u!4 &1080309739
 Transform:
@@ -24127,8 +24138,8 @@ Transform:
   m_GameObject: {fileID: 1080309735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.2, y: -89.9, z: -246.3}
-  m_LocalScale: {x: 0.5, y: 10, z: 0.1}
+  m_LocalPosition: {x: 52.64775, y: -70.728806, z: -205.8465}
+  m_LocalScale: {x: 10, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 193252302}
@@ -24160,22 +24171,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1080309741
-MonoBehaviour:
+--- !u!65 &1080309741
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080309735}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5309044616641374da0b0159aa152447, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  door: {fileID: 1951860228}
-  openRotation: {x: 0, y: 90, z: 0}
-  audioSource: {fileID: 0}
-  openSound: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 1346.384, y: 5, z: 156.9179}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1082669643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32422,7 +32438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BridgeController
   door: {fileID: 0}
   openRotation: {x: -1.18, y: 96.62, z: 5.6}
-  isOpened: 0
 --- !u!114 &1486795144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32435,9 +32450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3968855a3c7e7e94a968b29a314edd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BridgeZone
-  door: {fileID: 0}
+  bridgeController: {fileID: 1486795143}
   inventory: {fileID: 0}
-  panel: {fileID: 0}
 --- !u!1001 &1486860828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38013,7 +38027,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BridgeController
   door: {fileID: 1951860228}
   openRotation: {x: 0, y: 90, z: 0}
-  isOpened: 0
 --- !u!114 &1796658692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38026,9 +38039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3968855a3c7e7e94a968b29a314edd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BridgeZone
-  door: {fileID: 0}
+  bridgeController: {fileID: 1796658691}
   inventory: {fileID: 772015910}
-  panel: {fileID: 0}
 --- !u!1001 &1799101211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41969,42 +41981,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 158272, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
   m_PrefabInstance: {fileID: 901092731}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1951860224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951860223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11c834a27260d34fbe5ab9a77faf2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgeController
+  door: {fileID: 1951860228}
+  openRotation: {x: -1.18, y: 96.62, z: 5.6}
 --- !u!4 &1951860228 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 446898, guid: 1ba84d4b2929a2b4eb599316f738c0f6, type: 3}
   m_PrefabInstance: {fileID: 901092731}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1951860232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951860223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3968855a3c7e7e94a968b29a314edd4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BridgeZone
-  door: {fileID: 1951860233}
-  inventory: {fileID: 772015910}
-  panel: {fileID: 0}
---- !u!114 &1951860233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951860223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5309044616641374da0b0159aa152447, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  door: {fileID: 1951860228}
-  openRotation: {x: 0, y: 90, z: 0}
-  audioSource: {fileID: 0}
-  openSound: {fileID: 0}
 --- !u!1001 &1952657175
 PrefabInstance:
   m_ObjectHideFlags: 0

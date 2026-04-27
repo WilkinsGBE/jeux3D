@@ -1,56 +1,97 @@
+using TMPro;
 using UnityEngine;
 
 public class Terminal : MonoBehaviour
 {
+       [Header("Game System")]
     public Zone3GameManager gameManager;
-    // public ObjectiveManager objectiveManager;
-    //public GameObject terminalPanel; // UI 
     public EnemySpawner spawner;
     public int enemiesToSpawn = 5;
-    private bool activated = false;
     public Transform spawnPoint;
+
+    [Header("Interaction")]
+    private bool playerInZone = false;
+    private bool activated = false;
+
+    [Header("UI")]
+    public GameObject messagePanel;
+    public TextMeshProUGUI messageText;
+
+    [Header("FX")]
+    public ParticleSystem activateEffect;
+    public AudioSource audioSource;
+    public AudioClip activateSound;
 
     void Start()
     {
-        // terminalPanel.SetActive(false); // cache au début
+        if (messagePanel != null)
+            messagePanel.SetActive(false);
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) && !activated)
+        if (!other.CompareTag("Player")) return;
+
+        playerInZone = true;
+
+        if (!activated)
+            ShowMessage("Appuie sur E pour activer le terminal");
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        playerInZone = false;
+
+        HideMessage();
+    }
+
+    void Update()
+    {
+        if (!playerInZone || activated) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            /* activated = true;
-             objectiveManager.ActivateSystem();
-
-             //    terminalPanel.SetActive(true); 
-
-             Debug.Log("Terminal activé !");
-               if (spawner != null)
-             {
- spawner.SpawnEnemies(enemiesToSpawn, spawnPoint);
-             }
-
-             Debug.Log("Terminal activé ! + spawn ennemis");
-         */
-            activated = true;
-
-            // 🔵 Zone 3 manager
-            if (gameManager != null)
-            {
-                gameManager.ActivateTerminal();
-            }
-            else
-            {
-                Debug.LogWarning("GameManager non assigné !");
-            }
-
-            // 🔴 Spawn ennemis
-            if (spawner != null && spawnPoint != null)
-            {
-                spawner.SpawnEnemies(enemiesToSpawn, spawnPoint);
-            }
-            Debug.Log("Terminal activé + ennemis spawn");
-
+            ActivateTerminal();
         }
+    }
+
+    void ActivateTerminal()
+    {
+        activated = true;
+
+        //  Game logic
+        if (gameManager != null)
+            gameManager.ActivateTerminal();
+
+        if (spawner != null && spawnPoint != null)
+            spawner.SpawnEnemies(enemiesToSpawn, spawnPoint);
+
+        //  FX VISUEL
+        if (activateEffect != null)
+            activateEffect.Play();
+
+        //  SON
+        if (audioSource != null && activateSound != null)
+            audioSource.PlayOneShot(activateSound);
+
+        Debug.Log("⚡ Terminal activé");
+
+        HideMessage();
+    }
+
+    void ShowMessage(string msg)
+    {
+        if (messagePanel == null || messageText == null) return;
+
+        messagePanel.SetActive(true);
+        messageText.text = msg;
+    }
+
+    void HideMessage()
+    {
+        if (messagePanel != null)
+            messagePanel.SetActive(false);
     }
 }
