@@ -39,12 +39,12 @@ public class BossHealth : MonoBehaviour, IDamageable
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        // 🔥 Accumulate damage
+        // Accumulate damage
         accumulatedDamage += damageAmount;
 
         Debug.Log("Boss HP: " + currentHealth + " | Accumulated: " + accumulatedDamage);
 
-        // 🔥 Trigger Hit animation every 150 damage
+        // Trigger Hit animation every 150 damage
         if (accumulatedDamage >= hitThreshold)
         {
             if (animator != null)
