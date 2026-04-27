@@ -17,6 +17,8 @@ public class PlayerAttack : MonoBehaviour
     public float attack2DashDuration = 0.15f;
 
     private bool isAttacking = false;
+    private PlayerRoll playerRoll;
+    private PlayerHealth playerHealth;
 
     void Awake()
     {
@@ -28,18 +30,28 @@ public class PlayerAttack : MonoBehaviour
 
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
+
+        playerRoll = GetComponent<PlayerRoll>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
-        // While attacking → allow steering
+        if (playerHealth != null && (playerHealth.IsDead() || playerHealth.IsHit()))
+        {
+            CancelAttack();
+            return;
+        }
+
+        if (playerRoll != null && playerRoll.IsRolling)
+            return;
+
         if (isAttacking)
         {
             SteerAttackTowardCamera();
             return;
         }
 
-        // Inputs
         if (Input.GetMouseButtonDown(0))
             Attack1();
 
@@ -49,6 +61,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack1()
     {
+        if (playerHealth != null && playerHealth.IsHit()) return;
+
         isAttacking = true;
 
         movementScript.SetRootMotion(true);
@@ -60,6 +74,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack2()
     {
+        if (playerHealth != null && playerHealth.IsHit()) return;
+
         isAttacking = true;
 
         movementScript.SetRootMotion(true);
@@ -69,7 +85,22 @@ public class PlayerAttack : MonoBehaviour
         animator.SetTrigger("Attack2");
     }
 
-    // Called at the END of animations
+    void CancelAttack()
+    {
+        if (!isAttacking) return;
+
+        isAttacking = false;
+
+        if (movementScript != null)
+            movementScript.SetRootMotion(false);
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("Attack1");
+            animator.ResetTrigger("Attack2");
+        }
+    }
+
     public void EnableMovement()
     {
         isAttacking = false;
@@ -80,11 +111,14 @@ public class PlayerAttack : MonoBehaviour
         animator.ResetTrigger("Attack2");
     }
 
-    // Called by Animation Event (Attack 2)
     public void StartAttack2Dash()
     {
+        if (playerHealth != null && playerHealth.IsHit()) return;
+
         StartCoroutine(Attack2Dash());
     }
+
+    public bool IsAttacking => isAttacking;
 
     private IEnumerator Attack2Dash()
     {
@@ -97,6 +131,9 @@ public class PlayerAttack : MonoBehaviour
 
         while (timer < attack2DashDuration)
         {
+            if (playerHealth != null && playerHealth.IsHit())
+                yield break;
+
             controller.Move(dashDirection * speed * Time.deltaTime);
 
             timer += Time.deltaTime;
