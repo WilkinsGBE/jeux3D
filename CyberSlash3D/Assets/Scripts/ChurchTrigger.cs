@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class ChurchTrigger : MonoBehaviour
 {
-    public BossChase boss; // reference to your boss script
+    public BossChase boss;
+    public BossDoorTrigger bossDoorTrigger;
+
+    private bool hasTriggered = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!hasTriggered && other.CompareTag("Player"))
         {
-            boss.StartChasing();
-        }
-    }
+            hasTriggered = true;
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            boss.StopChasing();
+            bossDoorTrigger.LockDoorsClosed();
+            boss.StartChasing();
         }
     }
 }

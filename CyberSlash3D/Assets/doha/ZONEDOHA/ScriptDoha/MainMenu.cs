@@ -12,10 +12,23 @@ public class MainMenu : MonoBehaviour
     private bool gameStarted = false;
     private bool isPaused = false;
 
+    private const string StartInGameplayKey = "StartInGameplay";
+
     IEnumerator Start()
     {
         yield return null;
-        ShowMainMenu();
+
+        if (PlayerPrefs.GetInt(StartInGameplayKey, 0) == 1)
+        {
+            PlayerPrefs.SetInt(StartInGameplayKey, 0);
+            PlayerPrefs.Save();
+
+            PlayGame();
+        }
+        else
+        {
+            ShowMainMenu();
+        }
     }
 
     void Update()
@@ -23,7 +36,7 @@ public class MainMenu : MonoBehaviour
         if (!gameStarted)
             return;
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
                 ResumeGame();
@@ -53,8 +66,6 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        Debug.Log("Game Started");
-
         HideAllPanels();
 
         gameStarted = true;
@@ -65,7 +76,7 @@ public class MainMenu : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        StartCoroutine(LockCursorNextFrame());
+        StartCoroutine(StartGameplayNextFrame());
     }
 
     public void PauseGame()
@@ -92,6 +103,31 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         StartCoroutine(LockCursorNextFrame());
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+
+        PlayerPrefs.SetInt(StartInGameplayKey, 1);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Respawn()
+    {
+        RestartGame();
+    }
+
+    public void OpenMainMenu()
+    {
+        Time.timeScale = 1f;
+
+        PlayerPrefs.SetInt(StartInGameplayKey, 0);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator LockCursorNextFrame()
@@ -124,12 +160,6 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void OpenMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
-    }
-
     void HideAllPanels()
     {
         if (MainMenuPanel != null)
@@ -140,6 +170,21 @@ public class MainMenu : MonoBehaviour
 
         if (PauseMenuPanel != null)
             PauseMenuPanel.SetActive(false);
+    }
+
+    private IEnumerator StartGameplayNextFrame()
+    {
+        yield return null;
+
+        HideAllPanels();
+
+        if (GameHUD != null)
+            GameHUD.SetActive(true);
+
+        Time.timeScale = 1f;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void QuitGame()

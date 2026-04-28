@@ -19,6 +19,10 @@ public class BossHealth : MonoBehaviour, IDamageable
     public string hitTriggerName = "Hit";
     public string deathTriggerName = "Die";
 
+    [Header("Boss Fight End")]
+    public AudioSource bossMusic;
+    public BossDoorTrigger bossDoorTrigger;
+
     [Header("Events")]
     public UnityEvent onDeath;
 
@@ -39,18 +43,16 @@ public class BossHealth : MonoBehaviour, IDamageable
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        // Accumulate damage
         accumulatedDamage += damageAmount;
 
         Debug.Log("Boss HP: " + currentHealth + " | Accumulated: " + accumulatedDamage);
 
-        // Trigger Hit animation every 150 damage
         if (accumulatedDamage >= hitThreshold)
         {
             if (animator != null)
                 animator.SetTrigger(hitTriggerName);
 
-            accumulatedDamage -= hitThreshold; // keep overflow (important)
+            accumulatedDamage -= hitThreshold;
         }
 
         if (currentHealth <= 0)
@@ -68,21 +70,24 @@ public class BossHealth : MonoBehaviour, IDamageable
 
         Debug.Log("Boss died.");
 
-        // Disable behavior scripts
+        if (bossMusic != null)
+            bossMusic.Stop();
+
+        if (bossDoorTrigger != null)
+            bossDoorTrigger.UnlockAndOpenDoors();
+
         foreach (MonoBehaviour script in scriptsToDisable)
         {
             if (script != null)
                 script.enabled = false;
         }
 
-        // Disable hitboxes
         DamageHitbox[] hitboxes = GetComponentsInChildren<DamageHitbox>();
         foreach (var hitbox in hitboxes)
         {
             hitbox.gameObject.SetActive(false);
         }
 
-        // Play death animation
         if (animator != null)
             animator.SetTrigger(deathTriggerName);
 

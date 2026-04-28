@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class BossChase : MonoBehaviour
@@ -8,6 +8,9 @@ public class BossChase : MonoBehaviour
     public Animator animator;
 
     public float stopDistance = 3f;
+
+    [Header("Boss Music")]
+    public AudioSource bossMusic;
 
     private bool isChasing = false;
 
@@ -34,14 +37,15 @@ public class BossChase : MonoBehaviour
         agent.SetDestination(player.position);
 
         if (animator != null)
-        {
             animator.SetBool("isWalking", agent.velocity.magnitude > 0.1f);
-        }
     }
 
     public void StartChasing()
     {
         isChasing = true;
+
+        if (bossMusic != null && !bossMusic.isPlaying)
+            bossMusic.Play();
     }
 
     public void StopChasing()

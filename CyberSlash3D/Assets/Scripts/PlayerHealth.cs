@@ -104,7 +104,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         Debug.Log("Player died.");
 
-        // Stop hit state
         isHit = false;
 
         if (animator != null)
@@ -115,13 +114,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         onDeath?.Invoke();
 
-        // Disable movement
         if (playerMovement != null)
             playerMovement.enabled = false;
 
-        // Notify GameManager
-        if (GameManager.instance != null)
-            GameManager.instance.ShowDeathScreen();
+        StartCoroutine(DeathDelay());
     }
 
     public void EnableMovementAfterHit()
@@ -157,6 +153,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(hitStunDuration);
 
         EnableMovementAfterHit();
+    }
+
+    private IEnumerator DeathDelay()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        if (GameManager.instance != null)
+            GameManager.instance.ShowDeathScreen();
     }
     public bool IsHit()
     {
