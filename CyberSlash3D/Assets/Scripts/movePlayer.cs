@@ -39,9 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (animator != null)
             animator.applyRootMotion = false;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()

@@ -1,14 +1,14 @@
 using UnityEngine;
-//doha
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("UI")]
     public UIManager ui;
     public PersistentUI persistentUI;
 
-    public float health = 1f;
-    public float energy = 1f;
+    [Header("Game Stats")]
     public int score = 0;
     public int keys = 0;
     public int terminalsActivated = 0;
@@ -18,7 +18,10 @@ public class GameManager : MonoBehaviour
         if (instance == null)
             instance = this;
         else
+        {
             Destroy(gameObject);
+            return;
+        }
     }
 
     void Start()
@@ -40,11 +43,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
-
-        if (Input.GetKeyDown(KeyCode.H))
-            TakeDamage(0.1f);
-
         if (Input.GetKeyDown(KeyCode.J))
             AddScore(10);
 
@@ -54,50 +52,15 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
             ActivateTerminal();
 
-
-        if (Input.GetKeyDown(KeyCode.P))
-            persistentUI.ShowPause();
-
         if (Input.GetKeyDown(KeyCode.O))
-            persistentUI.ShowDeath();
+            ShowDeathScreen();
 
         if (Input.GetKeyDown(KeyCode.I))
-            persistentUI.ShowVictory();
+            ShowVictoryScreen();
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && persistentUI != null)
             persistentUI.HideAll();
     }
-
-
-
-    public void TakeDamage(float dmg)
-    {
-        health -= dmg;
-        health = Mathf.Clamp01(health);
-
-        Debug.Log("💔 Damage taken: " + dmg + " | HP: " + health);
-
-        if (ui != null)
-            ui.SetHealth(health);
-
-        if (health <= 0)
-        {
-            Debug.Log("☠ PLAYER DEAD");
-            persistentUI.ShowDeath();
-        }
-    }
-
-
-    public void UseEnergy(float amount)
-    {
-        energy -= amount;
-        energy = Mathf.Clamp01(energy);
-
-        if (ui != null)
-            ui.SetEnergy(energy);
-    }
-
-
 
     public void AddScore(int amount)
     {
@@ -117,8 +80,6 @@ public class GameManager : MonoBehaviour
             ui.SetKeys(keys);
     }
 
-
-
     public void ActivateTerminal()
     {
         terminalsActivated++;
@@ -128,12 +89,26 @@ public class GameManager : MonoBehaviour
             ui.SetTerminals(terminalsActivated);
     }
 
+    public void ShowDeathScreen()
+    {
+        Debug.Log("☠ PLAYER DEAD");
+
+        if (persistentUI != null)
+            persistentUI.ShowDeath();
+    }
+
+    public void ShowVictoryScreen()
+    {
+        Debug.Log("🏆 VICTORY");
+
+        if (persistentUI != null)
+            persistentUI.ShowVictory();
+    }
+
     void UpdateHUD()
     {
         if (ui == null) return;
 
-        ui.SetHealth(health);
-        ui.SetEnergy(energy);
         ui.SetScore(score);
         ui.SetKeys(keys);
         ui.SetTerminals(terminalsActivated);

@@ -4,6 +4,10 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
+
+    [Header("UI")]
+    public PlayerHUD playerHUD;
+
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
@@ -38,6 +42,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             animator = GetComponent<Animator>();
 
         playerRoll = GetComponent<PlayerRoll>();
+
+        if (playerHUD != null)
+            playerHUD.Setup(this);
+
+        if (UIManager.instance != null)
+            UIManager.instance.SetHealth(1f);
     }
 
     public void TakeDamage(int damageAmount)
@@ -50,6 +60,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (UIManager.instance != null)
+            UIManager.instance.SetHealth((float)currentHealth / maxHealth);
 
         Debug.Log("Player took damage. Health: " + currentHealth);
 
@@ -74,6 +87,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         currentHealth += healAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+        if (UIManager.instance != null)
+            UIManager.instance.SetHealth((float)currentHealth / maxHealth);
+
         Debug.Log("Player healed. Health: " + currentHealth);
 
         onHeal?.Invoke();
@@ -93,14 +109,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         if (animator != null)
         {
-            animator.ResetTrigger("Hit"); // stop hit animation
+            animator.ResetTrigger(hitTriggerName);
             animator.SetTrigger(deathTriggerName);
         }
 
         onDeath?.Invoke();
 
+        // Disable movement
         if (playerMovement != null)
             playerMovement.enabled = false;
+
+        // Notify GameManager
+        if (GameManager.instance != null)
+            GameManager.instance.ShowDeathScreen();
     }
 
     public void EnableMovementAfterHit()

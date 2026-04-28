@@ -9,19 +9,24 @@ public class ThirdPersonCameraLook : MonoBehaviour
     private float yaw;
     private float pitch;
 
-    void Start()
+    void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         yaw = transform.eulerAngles.y;
         pitch = transform.eulerAngles.x;
+
+        Input.ResetInputAxes();
     }
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        if (Cursor.lockState != CursorLockMode.Locked)
+            return;
+
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.unscaledDeltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.unscaledDeltaTime;
 
         yaw += mouseX;
         pitch -= mouseY;

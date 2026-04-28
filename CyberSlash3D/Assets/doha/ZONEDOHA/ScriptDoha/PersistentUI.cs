@@ -3,9 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PersistentUI : MonoBehaviour
 {
-     public static PersistentUI instance;
+    public static PersistentUI instance;
 
-    public GameObject PauseMenuPanel;
     public GameObject DeathMenuPanel;
     public GameObject VictoryMenuPanel;
 
@@ -20,7 +19,13 @@ public class PersistentUI : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+    }
+
+    void Start()
+    {
+        HideAll();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -28,51 +33,45 @@ public class PersistentUI : MonoBehaviour
         HideAll();
     }
 
-
-    public void ShowPause()
-    {
-        HideAll();
-        PauseMenuPanel.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    public void ResumeGame()
-    {
-        PauseMenuPanel.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    
     public void ShowDeath()
     {
         HideAll();
-        DeathMenuPanel.SetActive(true);
+
+        if (DeathMenuPanel != null)
+            DeathMenuPanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         Time.timeScale = 0f;
     }
 
-   
     public void ShowVictory()
     {
         HideAll();
-        VictoryMenuPanel.SetActive(true);
+
+        if (VictoryMenuPanel != null)
+            VictoryMenuPanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         Time.timeScale = 0f;
     }
 
-
     public void HideAll()
     {
-        if (PauseMenuPanel) PauseMenuPanel.SetActive(false);
-        if (DeathMenuPanel) DeathMenuPanel.SetActive(false);
-        if (VictoryMenuPanel) VictoryMenuPanel.SetActive(false);
+        if (DeathMenuPanel != null)
+            DeathMenuPanel.SetActive(false);
+
+        if (VictoryMenuPanel != null)
+            VictoryMenuPanel.SetActive(false);
 
         Time.timeScale = 1f;
     }
 
-    void Update()
+    private void OnDestroy()
     {
-        if (Input.GetKeyDown(KeyCode.P)) ShowPause();
-        if (Input.GetKeyDown(KeyCode.O)) ShowDeath();
-        if (Input.GetKeyDown(KeyCode.I)) ShowVictory();
-        if (Input.GetKeyDown(KeyCode.R)) HideAll();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
