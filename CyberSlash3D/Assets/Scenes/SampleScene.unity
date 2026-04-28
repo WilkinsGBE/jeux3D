@@ -1175,7 +1175,6 @@ GameObject:
   - component: {fileID: 55209746}
   - component: {fileID: 55209745}
   - component: {fileID: 55209744}
-  - component: {fileID: 55209748}
   m_Layer: 0
   m_Name: Third Person Aim Camera
   m_TagString: Untagged
@@ -1197,7 +1196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonAim
   AimCollisionFilter:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   IgnoreTag: 
   AimDistance: 200
   NoiseCancellation: 1
@@ -1219,14 +1218,14 @@ MonoBehaviour:
   CameraSide: 1
   CameraDistance: 16
   AvoidObstacles:
-    Enabled: 0
+    Enabled: 1
     CollisionFilter:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 64
     IgnoreTag: 
-    CameraRadius: 0.2
-    DampingIntoCollision: 0
-    DampingFromCollision: 0.5
+    CameraRadius: 0.05
+    DampingIntoCollision: 0.05
+    DampingFromCollision: 0.3
 --- !u!114 &55209746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,52 +1277,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55209743}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.53447825, z: 0, w: 0.8451823}
+  m_LocalRotation: {x: 0, y: 0.53447807, z: 0, w: 0.84518236}
   m_LocalPosition: {x: 750.916, y: 96.48162, z: 764.52783}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &55209748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55209743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDeoccluder
-  CollideAgainst:
-    serializedVersion: 2
-    m_Bits: 65
-  IgnoreTag: 
-  TransparentLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  MinimumDistanceFromTarget: 0.3
-  AvoidObstacles:
-    Enabled: 1
-    DistanceLimit: 0
-    MinimumOcclusionTime: 0
-    CameraRadius: 0.4
-    UseFollowTarget:
-      Enabled: 0
-      YOffset: 0
-    Strategy: 0
-    MaximumEffort: 4
-    SmoothingTime: 0
-    Damping: 0.4
-    DampingWhenOccluded: 0.2
-  ShotQualityEvaluation:
-    Enabled: 0
-    OptimalDistance: 10
-    NearLimit: 5
-    FarLimit: 30
-    MaxQualityBoost: 0.2
 --- !u!1001 &65718551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6819,7 +6779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.53447825, z: 0, w: 0.8451823}
+  m_LocalRotation: {x: 0, y: 0.53447807, z: 0, w: 0.84518236}
   m_LocalPosition: {x: 750.916, y: 96.48162, z: 764.52783}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9250,6 +9210,10 @@ PrefabInstance:
     - target: {fileID: 108230, guid: f8515ca20eba062499108c590879972d, type: 3}
       propertyPath: m_Name
       value: Church1_Deco_Column_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 108230, guid: f8515ca20eba062499108c590879972d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401972, guid: f8515ca20eba062499108c590879972d, type: 3}
       propertyPath: m_RootOrder
@@ -28477,6 +28441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Church1_Base_Stairs_A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 191530, guid: 2808d115c4ff0204e9ba7859b1ba3ec9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 428522, guid: 2808d115c4ff0204e9ba7859b1ba3ec9, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -31462,7 +31430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1488056729}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -37865,7 +37833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108230, guid: f8515ca20eba062499108c590879972d, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401972, guid: f8515ca20eba062499108c590879972d, type: 3}
       propertyPath: m_RootOrder
