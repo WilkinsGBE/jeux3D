@@ -3,22 +3,37 @@
 public class BossFistHitboxController : MonoBehaviour
 {
     public GameObject fistHitbox;
-    private DamageHitbox damageHitbox;
+
+    private Collider fistCollider;
+    private SkeletonDamageHitbox damageHitbox;
 
     private void Awake()
     {
-        damageHitbox = fistHitbox.GetComponent<DamageHitbox>();
-        fistHitbox.SetActive(false);
+        if (fistHitbox == null)
+        {
+            Debug.LogError("Fist Hitbox is not assigned!");
+            return;
+        }
+
+        fistCollider = fistHitbox.GetComponent<Collider>();
+        damageHitbox = fistHitbox.GetComponent<SkeletonDamageHitbox>();
+
+        if (fistCollider != null)
+            fistCollider.enabled = false;
     }
 
     public void EnableFist()
     {
-        damageHitbox.ResetHitbox(); 
-        fistHitbox.SetActive(true);
+        if (damageHitbox != null)
+            damageHitbox.ResetSkeletonHitbox();
+
+        if (fistCollider != null)
+            fistCollider.enabled = true;
     }
 
     public void DisableFist()
     {
-        fistHitbox.SetActive(false);
+        if (fistCollider != null)
+            fistCollider.enabled = false;
     }
 }
