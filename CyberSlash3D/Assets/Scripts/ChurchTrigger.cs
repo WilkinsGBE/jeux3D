@@ -1,9 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ChurchTrigger : MonoBehaviour
 {
     public BossChase boss;
     public BossDoorTrigger bossDoorTrigger;
+
+   
+    public BossHealth bossHealth;
 
     private bool hasTriggered = false;
 
@@ -15,6 +18,8 @@ public class ChurchTrigger : MonoBehaviour
 
             bossDoorTrigger.LockDoorsClosed();
             boss.StartChasing();
+
+            UIManager.instance.ShowBoss(bossHealth);
         }
     }
 }

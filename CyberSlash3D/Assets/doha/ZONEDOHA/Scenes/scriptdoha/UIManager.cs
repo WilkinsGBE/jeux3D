@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -18,12 +18,35 @@ public class UIManager : MonoBehaviour
     [Header("HUD")]
     public GameObject HUD;
 
+    [Header("Boss Health")]
+    public GameObject BossHealthBarRoot;
+    public Image BossHealthFill;
+    public TMP_Text BossNameText;
+
+    private BossHealth currentBoss;
+
     void Awake()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        HideBossHealth();
+    }
+
+    void Update()
+    {
+        if (currentBoss == null)
+            return;
+
+        UpdateBossHealth();
+
+        if (currentBoss.CurrentHealth <= 0)
+            HideBossHealth();
     }
 
     public void SetHealth(float value)
@@ -66,5 +89,38 @@ public class UIManager : MonoBehaviour
     {
         if (HUD != null)
             HUD.SetActive(false);
+    }
+
+
+    public void ShowBoss(BossHealth boss)
+    {
+        if (boss == null) return;
+
+        currentBoss = boss;
+
+        if (BossHealthBarRoot != null)
+            BossHealthBarRoot.SetActive(true);
+
+        if (BossNameText != null)
+            BossNameText.text = boss.BossName;
+
+        UpdateBossHealth();
+    }
+
+    public void HideBossHealth()
+    {
+        currentBoss = null;
+
+        if (BossHealthBarRoot != null)
+            BossHealthBarRoot.SetActive(false);
+    }
+
+    private void UpdateBossHealth()
+    {
+        if (BossHealthFill == null || currentBoss == null)
+            return;
+
+        float normalized = currentBoss.CurrentHealth / currentBoss.MaxHealth;
+        BossHealthFill.fillAmount = normalized;
     }
 }

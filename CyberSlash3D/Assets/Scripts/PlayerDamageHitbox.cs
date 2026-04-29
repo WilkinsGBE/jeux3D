@@ -25,7 +25,8 @@ public class PlayerDamageHitbox : MonoBehaviour
     {
         if (hasHit) return;
 
-        if (!other.CompareTag("Boss")) return;
+        if (other.gameObject.layer != LayerMask.NameToLayer("enemy"))
+            return;
 
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
 

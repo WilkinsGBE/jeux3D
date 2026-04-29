@@ -28,6 +28,13 @@ public class BossHealth : MonoBehaviour, IDamageable
 
     private bool isDead;
 
+    [Header("Boss Info")]
+    public string bossName = "Le Géant";
+
+    public string BossName => bossName;
+    public float MaxHealth => maxHealth;
+    public float CurrentHealth => currentHealth;
+
     private void Awake()
     {
         currentHealth = maxHealth;
