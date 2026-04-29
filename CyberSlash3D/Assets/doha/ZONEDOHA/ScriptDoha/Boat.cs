@@ -1,38 +1,37 @@
 using UnityEngine;
 
+// Ce script gère la victoire quand le joueur entre dans le bateau
 public class Boat : MonoBehaviour
 {
-    /* public ObjectiveManager objectiveManager;
-     public GameObject victoryPanel;
+    [Header("Victory UI")]
+    public GameObject victoryMenu; // Menu de victoire affiché à la fin du jeu
 
-     void OnTriggerEnter(Collider other)
-     {
-         if (other.CompareTag("Player"))
-         {
-             Debug.Log("BOAT TOUCHÉ");
-
-             if (objectiveManager.AllSystemsActivated() && objectiveManager.hasBoatKey)
-             {
-                 Debug.Log("VICTOIRE !");
-
-                 if (victoryPanel != null)
-                     victoryPanel.SetActive(true);
-
-                 Time.timeScale = 0f;
-             }
-             else
-             {
-                 Debug.Log("Objectifs incomplets !");
-             }
-         }
-     }*/
-    public Zone3GameManager gameManager;
-
+    // ===================== COLLISION =====================
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        // Vérifie si c’est le joueur
+        if (!other.CompareTag("Player")) return;
+
+        // Vérifie si le joueur possède la clé
+        if (BoatKey.hasKey)
         {
-            gameManager.TryVictory();
+            Debug.Log("WIN GAME");
+
+            // Affiche le menu de victoire
+            if (victoryMenu != null)
+                victoryMenu.SetActive(true);
+
+            // Pause du jeu
+            Time.timeScale = 0f;
+
+            // Débloque la souris
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            // Si pas de clé
+            Debug.Log(" Tu n'as pas la clé !");
         }
     }
 }

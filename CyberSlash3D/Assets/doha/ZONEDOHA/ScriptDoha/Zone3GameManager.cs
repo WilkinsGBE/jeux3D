@@ -1,19 +1,29 @@
 using UnityEngine;
 
 public class Zone3GameManager : MonoBehaviour
-{
-[Header("Systems")]
+{ public static Zone3GameManager instance;
+
+    [Header("Systems")]
     public int totalTerminals = 2;
     private int activatedTerminals = 0;
+
+    //  [Header("Score")]
+    // public int score = 0;
 
     [Header("Boat Key")]
     public GameObject boatKey;
     public bool hasBoatKey = false;
 
-    [Header("Victory")]
-    public GameObject victoryPanel;
+   /* [Header("Victory")]
+    public GameObject victoryMenuPanel;
+*/
 
-    // 🔵 Terminal activation
+    void Awake()
+    {
+             instance = this;
+
+    }
+    //  Terminal activation
     public void ActivateTerminal()
     {
         activatedTerminals++;
@@ -26,38 +36,25 @@ public class Zone3GameManager : MonoBehaviour
         }
     }
 
-    // 🔵 Spawn clé bateau
+    //  Spawn clé bateau
     void SpawnBoatKey()
     {
         if (boatKey != null)
         {
             boatKey.SetActive(true);
-            Debug.Log("🔑 Clé du bateau activée !");
+            Debug.Log(" Clé du bateau activée !");
         }
     }
 
-    // 🔵 Ramasser clé bateau
+    //  Ramasser clé bateau
     public void CollectBoatKey()
     {
         hasBoatKey = true;
-        Debug.Log("🔑 Clé bateau récupérée !");
+        Debug.Log(" Clé bateau récupérée !");
     }
-
-    // 🔵 Victoire
-    public void TryVictory()
+  
+    public bool CanWin()
     {
-        if (hasBoatKey)
-        {
-            Debug.Log("🏆 VICTOIRE !");
-
-            if (victoryPanel != null)
-                victoryPanel.SetActive(true);
-
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Debug.Log("❌ Tu n'as pas la clé !");
-        }
+        return hasBoatKey;
     }
 }

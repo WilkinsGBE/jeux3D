@@ -6,11 +6,16 @@ TagManager:
   tags:
   - Ground
   - Boss
+  - Enemy
+  - enemy
+  - Weapen
+  - hat
+  - eyes
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Zone3
   - Water
   - UI
   - groundMask
@@ -18,7 +23,7 @@ TagManager:
   - BossMask
   - Player
   - 
-  - 
+  - enemy
   - 
   - 
   - 

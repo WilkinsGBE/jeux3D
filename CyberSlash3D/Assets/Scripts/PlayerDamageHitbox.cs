@@ -16,7 +16,7 @@ public class PlayerDamageHitbox : MonoBehaviour
         hasHit = false;
     }
 
-    public void SetDamage(int newDamage) 
+    public void SetDamage(int newDamage)
     {
         damageAmount = newDamage;
     }
@@ -25,7 +25,7 @@ public class PlayerDamageHitbox : MonoBehaviour
     {
         if (hasHit) return;
 
-        if (!other.CompareTag("Boss")) return;
+        if (!other.CompareTag("Boss") && !other.CompareTag("enemy")) return;
 
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
 
@@ -34,5 +34,6 @@ public class PlayerDamageHitbox : MonoBehaviour
             damageable.TakeDamage(damageAmount);
             hasHit = true;
         }
+
     }
 }
