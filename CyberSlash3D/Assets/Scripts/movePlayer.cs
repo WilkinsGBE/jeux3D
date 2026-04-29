@@ -3,6 +3,13 @@
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Footstep Sounds")]
+    public AudioSource footstepAudioSource;
+    public AudioClip[] footstepClips;
+    public float stepInterval = 0.35f;
+
+    private float stepTimer;
+
     public float moveSpeed = 10f;
     public float rotationSmoothTime = 0.12f;
     public float gravity = -20f;
@@ -110,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         bool isRunning = inputDirection.magnitude >= 0.1f && !isJumping && !useRootMotion;
+        HandleFootsteps(isRunning);
         bool isJumpingAnim = isJumping || !recentlyGrounded;
 
         if (animator != null)
@@ -229,6 +237,28 @@ public class PlayerMovement : MonoBehaviour
         float groundAngle = Vector3.Angle(hit.normal, Vector3.up);
 
         return groundAngle <= maxGroundAngle || controller.isGrounded;
+    }
+
+    void HandleFootsteps(bool isRunning)
+    {
+        if (!isRunning)
+        {
+            stepTimer = 0f;
+            return;
+        }
+
+        stepTimer += Time.deltaTime;
+
+        if (stepTimer >= stepInterval)
+        {
+            stepTimer = 0f;
+
+            if (footstepAudioSource != null && footstepClips.Length > 0)
+            {
+                int index = Random.Range(0, footstepClips.Length);
+                footstepAudioSource.PlayOneShot(footstepClips[index]);
+            }
+        }
     }
 
     void OnDrawGizmosSelected()
