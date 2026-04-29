@@ -1,7 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossKeyPickup : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip pickupSound;
+
     public InventoryManager inventory;
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +20,13 @@ public class BossKeyPickup : MonoBehaviour
         inventory.hasBossKey = true;
         Debug.Log("Boss key acquired! hasBossKey = " + inventory.hasBossKey);
 
-        gameObject.SetActive(false);
+       
+        if (audioSource != null && pickupSound != null)
+        {
+            audioSource.PlayOneShot(pickupSound);
+        }
+
+        // Hide object AFTER playing sound (with delay)
+        Destroy(gameObject, pickupSound.length);
     }
 }
