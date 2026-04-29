@@ -4,20 +4,19 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // Singleton pour accéder facilement au UIManager depuis n’importe quel script
     public static UIManager instance;
 
     [Header("Health")]
-    public Image HealthBar_Fill; // barre de vie (fill image)
+    public Image HealthBar_Fill;
 
     [Header("Stats")]
-    public TMP_Text KeysText;      // affichage des clés
-    public TMP_Text TerminalText;  // affichage des terminaux activés
-    public TMP_Text ScoreText;     // score joueur
-    public TMP_Text TimerText;     // timer du jeu
+    public TMP_Text KeysText;
+    public TMP_Text TerminalText;
+    public TMP_Text ScoreText;
+    public TMP_Text TimerText;
 
     [Header("HUD")]
-    public GameObject HUD; // panel principal HUD
+    public GameObject HUD;
 
     [Header("Boss Health")]
     public GameObject BossHealthBarRoot;
@@ -28,14 +27,12 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        // gestion du singleton
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
     }
 
-<<<<<<< HEAD
     void Start()
     {
         HideBossHealth();
@@ -52,12 +49,9 @@ public class UIManager : MonoBehaviour
             HideBossHealth();
     }
 
-=======
     // ===================== HEALTH =====================
->>>>>>> origin/PMdoha
     public void SetHealth(float value)
     {
-        // update barre de vie (0 → 1)
         if (HealthBar_Fill != null)
             HealthBar_Fill.fillAmount = value;
     }
@@ -102,7 +96,6 @@ public class UIManager : MonoBehaviour
         if (HUD != null)
             HUD.SetActive(false);
     }
-
 
     public void ShowBoss(BossHealth boss)
     {
