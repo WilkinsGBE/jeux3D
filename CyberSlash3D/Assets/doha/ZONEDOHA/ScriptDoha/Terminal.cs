@@ -100,8 +100,8 @@ public class Terminal : MonoBehaviour
         UpdateTerminalUI();
 
         // spawn ennemis
-        if (spawner != null)
-            spawner.SpawnEnemies(enemiesToSpawn);
+        //if (spawner != null)
+        //    spawner.SpawnEnemies(enemiesToSpawn);
 
         // effet particule
         if (activateEffect != null)
