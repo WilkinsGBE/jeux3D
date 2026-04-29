@@ -197,7 +197,7 @@ public class ZombieAi : MonoBehaviour, IDamageable
     {
         Debug.Log(" Trigger détecté avec : " + other.name);
 
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Weapen")) return;
 
         Debug.Log("Player a touché le zombie !");
         TakeDamage(1);
