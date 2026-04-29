@@ -15,9 +15,16 @@ public class BossDoorTrigger : MonoBehaviour
 
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            doorsOpen = !doorsOpen;
-
-            SetDoors(doorsOpen);
+            // Check if player has at least 2 keys
+            if (KeyCollectible.keysCollected >= 2)
+            {
+                doorsOpen = !doorsOpen;
+                SetDoors(doorsOpen);
+            }
+            else
+            {
+                Debug.Log("You need 2 keys to open this door!");
+            }
         }
     }
 
