@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Footstep Sounds")]
     public AudioSource footstepAudioSource;
     public AudioClip[] footstepClips;
-    public float stepInterval = 0.35f;
+    public float stepInterval = 0.25f;
 
     private float stepTimer;
 
@@ -118,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
         bool isRunning = inputDirection.magnitude >= 0.1f && !isJumping && !useRootMotion;
         HandleFootsteps(isRunning);
+
         bool isJumpingAnim = isJumping || !recentlyGrounded;
 
         if (animator != null)
@@ -253,10 +254,9 @@ public class PlayerMovement : MonoBehaviour
         {
             stepTimer = 0f;
 
-            if (footstepAudioSource != null && footstepClips.Length > 0)
+            if (footstepAudioSource != null && footstepClips != null && footstepClips.Length > 0)
             {
-                int index = Random.Range(0, footstepClips.Length);
-                footstepAudioSource.PlayOneShot(footstepClips[index]);
+                footstepAudioSource.PlayOneShot(footstepClips[0]);
             }
         }
     }
