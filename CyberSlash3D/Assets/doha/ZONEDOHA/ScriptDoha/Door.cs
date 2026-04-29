@@ -10,6 +10,7 @@ public class Door : MonoBehaviour
 
     public void OpenDoor()
     {
+        
         if (door == null)
         {
             Debug.LogError(" Door non assignée !");
@@ -19,7 +20,10 @@ public class Door : MonoBehaviour
         if (isOpened) return;
 
         door.Rotate(openRotation);
-          if (audioSource != null && openSound != null)
+        Collider col = door.GetComponent<Collider>();
+        if (col != null)
+            col.enabled = false;
+        if (audioSource != null && openSound != null)
         {
             audioSource.PlayOneShot(openSound);
         }
@@ -28,4 +32,5 @@ public class Door : MonoBehaviour
 
         Debug.Log("🚪 Porte ouverte !");
     }
+
 }

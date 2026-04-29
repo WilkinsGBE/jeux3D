@@ -2,48 +2,60 @@ using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
-    // Variables
+    [Header("Mouse Settings")]
+    public float mouseSensitivity = 200f; // sensibilité de la souris
 
-    public Transform player;
+    private Transform eyes;   // position des yeux du joueur
+    private Transform player;  // référence au joueur (root)
 
-    public float mouseSensitivity = 2f;
-
-    float cameraVerticalRotation = 0f;
-
-    bool lockedCursor = true;
+    private float xRotation = 0f; // rotation verticale (haut / bas)
 
     void Start()
-
     {
-        // Verrouiller et masquer le curseur
-
+        // 🔒Bloque et cache le curseur au centre de l’écran
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        //  Cherche l’objet "Eyes" dans la scène
+        GameObject e = GameObject.FindWithTag("Eyes");
 
+        if (e == null)
+        {
+            Debug.LogError("❌ Aucun objet avec le tag 'Eyes' !");
+            return;
+        }
+
+        //  On récupère les références
+        eyes = e.transform;
+        player = eyes.root;
+
+        //  On attache la caméra aux yeux du joueur
+        transform.SetParent(eyes);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+
+        Debug.Log("👀 FPS Camera prête !");
     }
 
     void Update()
-
     {
+        //  sécurité si pas trouvé
+        if (eyes == null || player == null) return;
 
-        // Collecte des entrées souris
+        // 🖱️ Lecture de la souris
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        // Rotation verticale (regarder haut/bas)
+        xRotation -= mouseY;
 
-        float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        //  limite pour éviter de tourner à 360°
+        xRotation = Mathf.Clamp(xRotation, -85f, 85f);
 
-        // Rotation de la caméra autour de son axe X local
+        //  applique rotation caméra (haut/bas)
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        cameraVerticalRotation -= inputY;
-
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
-
-        transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
-
-        // Rotation du joueur et de la caméra autour de son axe Y
-
-        player.Rotate(Vector3.up * inputX);
-
+        //  rotation horizontale du joueur (gauche/droite)
+        player.Rotate(Vector3.up * mouseX);
     }
 }

@@ -7,19 +7,31 @@ TagManager:
   - Ground
   - Boss
   - Enemy
+<<<<<<< HEAD
+=======
+  - enemy
+  - Weapen
+  - hat
+  - eyes
+>>>>>>> origin/PMdoha
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Zone3
   - Water
   - UI
   - groundMask
   - churchFloorMask
   - BossMask
   - Player
+<<<<<<< HEAD
   - enemy
   - 
+=======
+  - 
+  - enemy
+>>>>>>> origin/PMdoha
   - 
   - 
   - 

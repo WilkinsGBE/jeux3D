@@ -25,6 +25,7 @@ public class PlayerDamageHitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+<<<<<<< HEAD
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
 
         if (damageable == null)
@@ -42,5 +43,19 @@ public class PlayerDamageHitbox : MonoBehaviour
 
         damageable.TakeDamage(damageAmount);
         hitTargets.Add(damageable);
+=======
+        if (hasHit) return;
+
+        if (!other.CompareTag("Boss") && !other.CompareTag("enemy")) return;
+
+        IDamageable damageable = other.GetComponentInParent<IDamageable>();
+
+        if (damageable != null)
+        {
+            damageable.TakeDamage(damageAmount);
+            hasHit = true;
+        }
+
+>>>>>>> origin/PMdoha
     }
 }
