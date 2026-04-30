@@ -3,21 +3,21 @@ using UnityEngine;
 // Gestion globale du jeu (score, clés, UI, menus)
 public class GameManager : MonoBehaviour
 {
-    // Singleton pour accès global
     public static GameManager instance;
 
     [Header("UI")]
-    public UIManager ui;                 // interface HUD
-    public PersistentUI persistentUI;   // menus mort / victoire
+    public UIManager ui;
+    public PersistentUI persistentUI;
 
     [Header("Game Stats")]
-    public int score = 0; // score joueur
-    public int keys = 0;  // nombre de clés collectées
-    // public int terminalsActivated = 0; // (désactivé)
+    public int score = 0;
+    public int keys = 0;
+
+    [Header("Ambient Music")]
+    public AudioSource ambientMusicSource;
 
     void Awake()
     {
-        // setup singleton
         if (instance == null)
             instance = this;
         else
@@ -31,13 +31,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GAME MANAGER START");
 
-        // vérifie UI
         if (ui == null)
             Debug.LogError("UI MANAGER NON ASSIGNÉ !");
         else
             Debug.Log("UI MANAGER OK");
 
-        // vérifie menus persistants
         if (persistentUI == null)
             Debug.LogError("PERSISTENT UI NON ASSIGNÉ !");
         else
@@ -48,25 +46,33 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // test score
         if (Input.GetKeyDown(KeyCode.J))
             AddScore(10);
 
-        // test clé
         if (Input.GetKeyDown(KeyCode.K))
             AddKey();
 
-        // afficher écran mort (test)
         if (Input.GetKeyDown(KeyCode.O))
             ShowDeathScreen();
 
-        // afficher écran victoire (test)
         if (Input.GetKeyDown(KeyCode.I))
             ShowVictoryScreen();
 
-        // reset UI menu
         if (Input.GetKeyDown(KeyCode.R) && persistentUI != null)
             persistentUI.HideAll();
+    }
+
+    // ===================== AMBIENT MUSIC =====================
+    public void PlayAmbientMusic()
+    {
+        if (ambientMusicSource != null && !ambientMusicSource.isPlaying)
+            ambientMusicSource.Play();
+    }
+
+    public void StopAmbientMusic()
+    {
+        if (ambientMusicSource != null && ambientMusicSource.isPlaying)
+            ambientMusicSource.Stop();
     }
 
     // ===================== SCORE =====================
@@ -75,7 +81,6 @@ public class GameManager : MonoBehaviour
         score += amount;
         Debug.Log("Score: " + score);
 
-        // update UI
         if (ui != null)
             ui.SetScore(score);
     }
@@ -86,7 +91,6 @@ public class GameManager : MonoBehaviour
         keys++;
         Debug.Log("Keys: " + keys);
 
-        // update UI
         if (ui != null)
             ui.SetKeys(keys);
     }
@@ -96,6 +100,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("PLAYER DEAD");
 
+        StopAmbientMusic();
+
         if (persistentUI != null)
             persistentUI.ShowDeath();
     }
@@ -104,6 +110,8 @@ public class GameManager : MonoBehaviour
     public void ShowVictoryScreen()
     {
         Debug.Log("VICTORY");
+
+        StopAmbientMusic();
 
         if (persistentUI != null)
             persistentUI.ShowVictory();
@@ -123,9 +131,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("VICTORY");
 
+        StopAmbientMusic();
+
         if (persistentUI != null)
             persistentUI.ShowVictory();
 
-        Time.timeScale = 0f; // pause jeu
+        Time.timeScale = 0f;
     }
 }

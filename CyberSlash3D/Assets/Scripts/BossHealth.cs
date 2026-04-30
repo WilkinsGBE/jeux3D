@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class BossHealth : MonoBehaviour, IDamageable
 {
@@ -23,9 +24,12 @@ public class BossHealth : MonoBehaviour, IDamageable
     public AudioSource bossMusic;
     public BossDoorTrigger bossDoorTrigger;
 
+    [Header("Ambient Music Resume")]
+    public float ambientResumeDelay = 3f;
+
     [Header("Death Sound")]
-    public AudioSource deathAudioSource; // Assign in Inspector
-    public AudioClip deathSound;         // Assign in Inspector
+    public AudioSource deathAudioSource;
+    public AudioClip deathSound;
 
     [Header("Events")]
     public UnityEvent onDeath;
@@ -67,9 +71,7 @@ public class BossHealth : MonoBehaviour, IDamageable
         }
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     private void Die()
@@ -84,43 +86,40 @@ public class BossHealth : MonoBehaviour, IDamageable
         if (GameManager.instance != null)
             GameManager.instance.AddScore(1250);
 
-        // 🎵 Stop boss music
         if (bossMusic != null)
             bossMusic.Stop();
 
-        // 🔊 Play death sound (LOUD + 2D)
         if (deathAudioSource != null && deathSound != null)
-        {
-            deathAudioSource.PlayOneShot(deathSound, 2f); // 2f = louder
-        }
+            deathAudioSource.PlayOneShot(deathSound, 2f);
         else
-        {
             Debug.LogWarning("Death sound or AudioSource not assigned!");
-        }
 
-        // 🚪 Open doors
         if (bossDoorTrigger != null)
             bossDoorTrigger.UnlockAndOpenDoors();
 
-        // ❌ Disable scripts
         foreach (MonoBehaviour script in scriptsToDisable)
         {
             if (script != null)
                 script.enabled = false;
         }
 
-        // ❌ Disable hitboxes
         DamageHitbox[] hitboxes = GetComponentsInChildren<DamageHitbox>();
         foreach (var hitbox in hitboxes)
-        {
             hitbox.gameObject.SetActive(false);
-        }
 
-        // 🎬 Play death animation
         if (animator != null)
             animator.SetTrigger(deathTriggerName);
 
-        onDeath?.Invoke();
+        StartCoroutine(ResumeAmbientMusicDelayed());
 
+        onDeath?.Invoke();
+    }
+
+    private IEnumerator ResumeAmbientMusicDelayed()
+    {
+        yield return new WaitForSecondsRealtime(ambientResumeDelay);
+
+        if (GameManager.instance != null)
+            GameManager.instance.PlayAmbientMusic();
     }
 }

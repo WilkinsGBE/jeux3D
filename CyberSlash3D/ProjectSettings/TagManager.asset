@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - enemy
   - Player
+  - eyes
   layers:
   - Default
   - TransparentFX

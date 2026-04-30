@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -8,6 +8,9 @@ public class MainMenu : MonoBehaviour
     public GameObject HowToPlayPanel;
     public GameObject GameHUD;
     public GameObject PauseMenuPanel;
+
+    [Header("Menu Music")]
+    public AudioSource menuMusicSource;
 
     private bool gameStarted = false;
     private bool isPaused = false;
@@ -47,6 +50,8 @@ public class MainMenu : MonoBehaviour
 
     public void ShowMainMenu()
     {
+        PlayMenuMusic();
+
         HideAllPanels();
 
         gameStarted = false;
@@ -66,6 +71,12 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        StopMenuMusic();
+
+        // ✅ START AMBIENT MUSIC HERE
+        if (GameManager.instance != null)
+            GameManager.instance.PlayAmbientMusic();
+
         HideAllPanels();
 
         gameStarted = true;
@@ -81,6 +92,10 @@ public class MainMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        // ❌ DO NOT play music here (you wanted no music during pause)
+        if (GameManager.instance != null)
+            GameManager.instance.StopAmbientMusic();
+
         HideAllPanels();
 
         isPaused = true;
@@ -96,6 +111,10 @@ public class MainMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        // ✅ Resume ambient music
+        if (GameManager.instance != null)
+            GameManager.instance.PlayAmbientMusic();
+
         HideAllPanels();
 
         isPaused = false;
@@ -107,6 +126,11 @@ public class MainMenu : MonoBehaviour
 
     public void RestartGame()
     {
+        StopMenuMusic();
+
+        if (GameManager.instance != null)
+            GameManager.instance.StopAmbientMusic();
+
         Time.timeScale = 1f;
 
         PlayerPrefs.SetInt(StartInGameplayKey, 1);
@@ -122,6 +146,11 @@ public class MainMenu : MonoBehaviour
 
     public void OpenMainMenu()
     {
+        StopMenuMusic();
+
+        if (GameManager.instance != null)
+            GameManager.instance.StopAmbientMusic();
+
         Time.timeScale = 1f;
 
         PlayerPrefs.SetInt(StartInGameplayKey, 0);
@@ -140,6 +169,8 @@ public class MainMenu : MonoBehaviour
 
     public void OpenHowToPlay()
     {
+        PlayMenuMusic();
+
         HideAllPanels();
 
         if (HowToPlayPanel != null)
@@ -151,6 +182,8 @@ public class MainMenu : MonoBehaviour
 
     public void CloseHowToPlay()
     {
+        PlayMenuMusic();
+
         HideAllPanels();
 
         if (MainMenuPanel != null)
@@ -187,8 +220,22 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void PlayMenuMusic()
+    {
+        if (menuMusicSource != null && !menuMusicSource.isPlaying)
+            menuMusicSource.Play();
+    }
+
+    private void StopMenuMusic()
+    {
+        if (menuMusicSource != null && menuMusicSource.isPlaying)
+            menuMusicSource.Stop();
+    }
+
     public void QuitGame()
     {
+        StopMenuMusic();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

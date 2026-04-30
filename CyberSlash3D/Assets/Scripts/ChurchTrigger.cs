@@ -16,6 +16,10 @@ public class ChurchTrigger : MonoBehaviour
         {
             hasTriggered = true;
 
+            // 🔇 STOP AMBIENT MUSIC
+            if (GameManager.instance != null)
+                GameManager.instance.StopAmbientMusic();
+
             bossDoorTrigger.LockDoorsClosed();
             boss.StartChasing();
 
