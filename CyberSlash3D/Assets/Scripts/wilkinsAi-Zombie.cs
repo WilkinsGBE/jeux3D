@@ -1,7 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class WilkinsAIZombie : MonoBehaviour
+public class WilkinsAIZombie : MonoBehaviour, IDamageable
 {
     [Header("Target")]
     public Transform player;
@@ -19,8 +19,8 @@ public class WilkinsAIZombie : MonoBehaviour
     private bool isDead = false;
     private bool hasDamaged = false;
 
-    const string STAND_STATE  = "Stand";
-    const string WALK_STATE   = "Walk";
+    const string STAND_STATE = "Stand";
+    const string WALK_STATE = "Walk";
     const string ATTACK_STATE = "Attack";
     const string DEFEATED_STATE = "Defeated";
 
@@ -29,8 +29,10 @@ public class WilkinsAIZombie : MonoBehaviour
     void Awake()
     {
         currentAction = STAND_STATE;
-        animator      = GetComponentInChildren<Animator>();
-        navMeshAgent  = GetComponent<NavMeshAgent>();
+
+        animator = GetComponentInChildren<Animator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
         FindPlayer();
     }
 
@@ -46,9 +48,12 @@ public class WilkinsAIZombie : MonoBehaviour
         if (distance <= 2.5f)
         {
             navMeshAgent.isStopped = false;
-            Vector3 dir     = (transform.position - player.position).normalized;
+
+            Vector3 dir = (transform.position - player.position).normalized;
             Vector3 stopPos = player.position + dir * 1.8f;
+
             navMeshAgent.SetDestination(stopPos);
+
             ChangeState(ATTACK_STATE);
             Attacking();
             return;
@@ -56,6 +61,7 @@ public class WilkinsAIZombie : MonoBehaviour
 
         navMeshAgent.isStopped = false;
         navMeshAgent.SetDestination(player.position);
+
         ChangeState(WALK_STATE);
     }
 
@@ -68,6 +74,7 @@ public class WilkinsAIZombie : MonoBehaviour
             if (state.normalizedTime >= 0.5f && !hasDamaged)
             {
                 PlayerHealth ph = player.GetComponent<PlayerHealth>();
+
                 if (ph != null && !ph.IsDead())
                     ph.TakeDamage(damage);
 
@@ -79,43 +86,60 @@ public class WilkinsAIZombie : MonoBehaviour
         }
     }
 
+    // ✅ NOW WORKS WITH PLAYER ATTACK SYSTEM
     public void TakeDamage(int dmg)
     {
         if (isDead) return;
+
+        Debug.Log("Zombie took damage: " + dmg);
+
         health -= dmg;
-        if (health <= 0) Die();
+
+        if (health <= 0)
+            Die();
     }
 
     void Die()
     {
         if (isDead) return;
+
         isDead = true;
+
+        Debug.Log("Zombie died");
+
         ChangeState(DEFEATED_STATE);
+
         navMeshAgent.isStopped = true;
         navMeshAgent.ResetPath();
+
         Destroy(gameObject, 2f);
     }
 
     void ChangeState(string newState)
     {
         if (currentAction == newState) return;
+
         currentAction = newState;
+
         ResetAnimation();
         animator.SetBool(newState, true);
     }
 
     void ResetAnimation()
     {
-        animator.SetBool(STAND_STATE,   false);
-        animator.SetBool(WALK_STATE,    false);
-        animator.SetBool(ATTACK_STATE,  false);
+        animator.SetBool(STAND_STATE, false);
+        animator.SetBool(WALK_STATE, false);
+        animator.SetBool(ATTACK_STATE, false);
         animator.SetBool(DEFEATED_STATE, false);
     }
 
     void FindPlayer()
     {
         if (player != null) return;
+
         GameObject p = GameObject.FindWithTag("Player");
-        if (p != null) player = p.transform;
+
+        if (p != null)
+            player = p.transform;
     }
 }
