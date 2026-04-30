@@ -81,6 +81,9 @@ public class BossHealth : MonoBehaviour, IDamageable
 
         Debug.Log("Boss died.");
 
+        if (GameManager.instance != null)
+            GameManager.instance.AddScore(1250);
+
         // 🎵 Stop boss music
         if (bossMusic != null)
             bossMusic.Stop();
@@ -118,5 +121,6 @@ public class BossHealth : MonoBehaviour, IDamageable
             animator.SetTrigger(deathTriggerName);
 
         onDeath?.Invoke();
+
     }
 }
