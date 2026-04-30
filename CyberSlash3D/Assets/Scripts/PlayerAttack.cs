@@ -16,6 +16,10 @@ public class PlayerAttack : MonoBehaviour
     public float attack2DashDistance = 3f;
     public float attack2DashDuration = 0.15f;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip attackSound;
+
     private bool isAttacking = false;
     private PlayerRoll playerRoll;
     private PlayerHealth playerHealth;
@@ -169,5 +173,11 @@ public class PlayerAttack : MonoBehaviour
             targetRotation,
             attackTurnSpeed * Time.deltaTime
         );
+    }
+
+    public void PlayAttackSound()
+    {
+        if (audioSource != null && attackSound != null)
+            audioSource.PlayOneShot(attackSound);
     }
 }
