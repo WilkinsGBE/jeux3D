@@ -199,7 +199,7 @@ public class Terminal : MonoBehaviour
         if (terminalText != null)
         {
             terminalText.gameObject.SetActive(true);
-            terminalText.text = "🗝️ Clé bateau obtenue !";
+            //terminalText.text = "🗝️ Clé bateau obtenue !";
         }
 
         yield return new WaitForSeconds(2f);
