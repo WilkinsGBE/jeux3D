@@ -4,21 +4,31 @@ using System.Collections;
 public class WelcomeZone : MonoBehaviour
 {
     public GameObject welcomePanel;
+    public float displayTime = 4f;
+    public float fadeSpeed = 2f;
     public Vector3 gizmoSize = new Vector3(3f, 2f, 3f);
+
     private bool triggered = false;
+    private CanvasGroup canvasGroup;
 
     void Start()
     {
-        Debug.Log("WelcomeZone START — welcomePanel est null? " + (welcomePanel == null));
+        if (welcomePanel != null)
+        {
+            canvasGroup = welcomePanel.GetComponent<CanvasGroup>();
+
+            if (canvasGroup == null)
+                canvasGroup = welcomePanel.AddComponent<CanvasGroup>();
+
+            canvasGroup.alpha = 0f;
+            welcomePanel.SetActive(false);
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter détecté — objet: " + other.gameObject.name + " | Tag: " + other.tag);
-
         if (!triggered && other.CompareTag("Player"))
         {
-            Debug.Log("Player détecté — lancement du message");
             triggered = true;
             StartCoroutine(ShowMessage());
         }
@@ -26,11 +36,25 @@ public class WelcomeZone : MonoBehaviour
 
     IEnumerator ShowMessage()
     {
-        Debug.Log("ShowMessage — activation du panel");
         welcomePanel.SetActive(true);
-        yield return new WaitForSeconds(4f);
+
+        while (canvasGroup.alpha < 1f)
+        {
+            canvasGroup.alpha += fadeSpeed * Time.deltaTime;
+            yield return null;
+        }
+        canvasGroup.alpha = 1f;
+
+        yield return new WaitForSeconds(displayTime);
+
+        while (canvasGroup.alpha > 0f)
+        {
+            canvasGroup.alpha -= fadeSpeed * Time.deltaTime;
+            yield return null;
+        }
+        canvasGroup.alpha = 0f;
+
         welcomePanel.SetActive(false);
-        Debug.Log("ShowMessage — panel désactivé");
     }
 
     void OnDrawGizmos()
