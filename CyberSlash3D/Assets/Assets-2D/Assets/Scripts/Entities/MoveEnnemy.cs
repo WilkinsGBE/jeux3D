@@ -49,7 +49,7 @@ public class MoveEnnemy : MonoBehaviour
         // Vision
         if (CanSeePlayer())
         {
-            Debug.Log("Player seen!");
+            //Debug.Log("Player seen!");
             AttackPlayer();
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             return;

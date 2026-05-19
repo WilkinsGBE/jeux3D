@@ -402,7 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152190217}
-  - component: {fileID: 152190218}
+  - component: {fileID: 152190220}
   - component: {fileID: 152190219}
   m_Layer: 0
   m_Name: GameManager
@@ -426,45 +426,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1073727067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &152190218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152190216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 182b4eb3f3f700049a6317d65cb0a3e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  player: {fileID: 0}
-  Score: {fileID: 1088610567}
-  Timer: {fileID: 377528289}
-  resultBaseScoreText: {fileID: 468599665}
-  resultTimeText: {fileID: 1096000275}
-  resultBonusText: {fileID: 1158625658}
-  resultFinalScoreText: {fileID: 531211778}
-  audioSource: {fileID: 152190219}
-  deathSound: {fileID: 8300000, guid: fb9458bbef778674e87ee3c19b16ffd8, type: 3}
-  levelCompletePanel: {fileID: 678669395}
-  hasAccessCard: 0
-  enemiesRemaining: 0
-  score: 0
-  coinScore: 10
-  referenceTime: 300
-  maxTimeBonus: 1000
-  timer: 0
-  demonsKilled: 0
-  wallUnlocked: 0
-  laserWall: {fileID: 0}
-  puzzleSolved: 0
-  currentWord: 
-  correctWord: LASER
-  angleZone: {fileID: 0}
-  playerTransform: {fileID: 0}
-  correctOrder: 02000000040000000600000008000000
-  angle: {fileID: 0}
 --- !u!82 &152190219
 AudioSource:
   m_ObjectHideFlags: 0
@@ -562,6 +523,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &152190220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152190216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b22c0b24b1bee44bf968275fee2a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager2D
+  player: {fileID: 0}
+  Score: {fileID: 1088610567}
+  Timer: {fileID: 377528289}
+  resultBaseScoreText: {fileID: 468599665}
+  resultTimeText: {fileID: 1096000275}
+  resultBonusText: {fileID: 1158625658}
+  resultFinalScoreText: {fileID: 531211778}
+  audioSource: {fileID: 152190219}
+  deathSound: {fileID: 8300000, guid: fb9458bbef778674e87ee3c19b16ffd8, type: 3}
+  levelCompletePanel: {fileID: 678669395}
+  hasAccessCard: 0
+  enemiesRemaining: 0
+  score: 0
+  coinScore: 10
+  referenceTime: 300
+  maxTimeBonus: 1000
+  timer: 0
+  demonsKilled: 0
+  wallUnlocked: 0
+  laserWall: {fileID: 0}
+  puzzleSolved: 0
+  currentWord: 
+  correctWord: LASER
+  angleZone: {fileID: 0}
+  playerTransform: {fileID: 0}
+  correctOrder: 02000000040000000600000008000000
+  angle: {fileID: 0}
 --- !u!1 &160720871
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +651,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74461283136844347, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 199371901}
+    - target: {fileID: 74461283136844347, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 74461283136844347, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu2D, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 429535653575274953, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
@@ -658,6 +670,18 @@ PrefabInstance:
     - target: {fileID: 2439623816575440428, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2616768283036298688, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 199371901}
+    - target: {fileID: 2616768283036298688, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseHowToPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 2616768283036298688, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu2D, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2986784386133206240, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_Pivot.x
@@ -761,11 +785,36 @@ PrefabInstance:
       propertyPath: levelCompletePanel
       value: 
       objectReference: {fileID: 724952307}
+    - target: {fileID: 6676559831059255795, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1908143725}
+    - target: {fileID: 6676559831059255795, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676559831059255795, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu2D, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047913421766445027, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1908143725}
+    - target: {fileID: 7047913421766445027, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenHowToPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047913421766445027, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu2D, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7266593863934459810, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6028381845382383075, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
     m_RemovedGameObjects:
     - {fileID: 917818442403728646, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
     - {fileID: 6193556962184426401, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
@@ -776,8 +825,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4851078186370457497, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       insertIndex: -1
       addedObject: {fileID: 724952310}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9127429769538227785, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 199371901}
   m_SourcePrefab: {fileID: 100100000, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+--- !u!1 &199371900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9127429769538227785, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
+  m_PrefabInstance: {fileID: 199371899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &199371901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199371900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17f774b4820c8f4e9fa61705b52b1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu2D
+  HowToPlayPanel: {fileID: 987376910}
+  MainMenuPanel: {fileID: 1278737593}
+  PlayerDeadPanel: {fileID: 1410705787}
+  levelCompletePanel: {fileID: 724952307}
+  resultBaseScoreText: {fileID: 0}
+  resultTimeText: {fileID: 0}
+  resultBonusText: {fileID: 0}
+  resultFinalScoreText: {fileID: 0}
 --- !u!1 &207642100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,7 +2030,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OpenMainMenu
         m_Mode: 1
@@ -2304,8 +2381,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1908143725}
+        m_TargetAssemblyTypeName: MainMenu2D, Assembly-CSharp
         m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
@@ -2371,7 +2448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &724952308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2656,7 +2733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 839502426}
-  - component: {fileID: 839502425}
+  - component: {fileID: 839502427}
   m_Layer: 0
   m_Name: GameUIRoot
   m_TagString: Untagged
@@ -2664,20 +2741,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &839502425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839502424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1ac970493765f4fa066ad1cf8fb8fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  playerDeadPanel: {fileID: 160720871}
-  LevelCompletePanel: {fileID: 678669395}
 --- !u!4 &839502426
 Transform:
   m_ObjectHideFlags: 0
@@ -2696,6 +2759,20 @@ Transform:
   - {fileID: 1908143724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839502427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839502424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1a4e40a81fce64392317d0579e368e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PersistentUI2D
+  playerDeadPanel: {fileID: 160720871}
+  LevelCompletePanel: {fileID: 678669395}
 --- !u!1 &854958079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,7 +2993,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: Revivre
         m_Mode: 1
@@ -3186,8 +3263,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1908143725}
+        m_TargetAssemblyTypeName: MainMenu2D, Assembly-CSharp
         m_MethodName: OpenMainMenu
         m_Mode: 1
         m_Arguments:
@@ -3461,8 +3538,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1908143725}
+        m_TargetAssemblyTypeName: MainMenu2D, Assembly-CSharp
         m_MethodName: Revivre
         m_Mode: 1
         m_Arguments:
@@ -4676,8 +4753,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1908143725}
+        m_TargetAssemblyTypeName: MainMenu2D, Assembly-CSharp
         m_MethodName: OpenMainMenu
         m_Mode: 1
         m_Arguments:
@@ -4881,7 +4958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1410705788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5603,7 +5680,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -5736,8 +5813,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1908143725}
+        m_TargetAssemblyTypeName: MainMenu2D, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -6143,8 +6220,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908143723}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1908143725}
+        m_TargetAssemblyTypeName: MainMenu2D, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -6202,7 +6279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1908143724}
-  - component: {fileID: 1908143723}
+  - component: {fileID: 1908143725}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -6210,26 +6287,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1908143723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908143722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054b16e063aba534cab93dd2feedfa09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  HowToPlayPanel: {fileID: 987376910}
-  MainMenuPanel: {fileID: 1278737593}
-  PlayerDeadPanel: {fileID: 160720871}
-  levelCompletePanel: {fileID: 678669395}
-  resultBaseScoreText: {fileID: 468599665}
-  resultTimeText: {fileID: 1096000275}
-  resultBonusText: {fileID: 1158625658}
-  resultFinalScoreText: {fileID: 531211778}
 --- !u!4 &1908143724
 Transform:
   m_ObjectHideFlags: 0
@@ -6245,6 +6302,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 839502426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1908143725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908143722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17f774b4820c8f4e9fa61705b52b1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu2D
+  HowToPlayPanel: {fileID: 987376910}
+  MainMenuPanel: {fileID: 1278737593}
+  PlayerDeadPanel: {fileID: 160720871}
+  levelCompletePanel: {fileID: 678669395}
+  resultBaseScoreText: {fileID: 468599665}
+  resultTimeText: {fileID: 1096000275}
+  resultBonusText: {fileID: 1158625658}
+  resultFinalScoreText: {fileID: 531211778}
 --- !u!1 &2050073721
 GameObject:
   m_ObjectHideFlags: 0

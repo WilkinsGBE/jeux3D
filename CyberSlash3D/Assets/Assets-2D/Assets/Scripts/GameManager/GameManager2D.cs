@@ -104,7 +104,7 @@ public class GameManager2D : MonoBehaviour
             audioSource.PlayOneShot(deathSound);
         }
 
-        if (PersistentUI.instance == null)
+        if (PersistentUI2D.instance == null)
         {
             Debug.LogError("UIManager instance is null");
             return;
@@ -160,7 +160,7 @@ public class GameManager2D : MonoBehaviour
 
         // Scene sans carte
 
-        if (scene.buildIndex == 1)
+        if (scene.name == "WilkinsScene 1")
         {
             hasAccessCard = true;
         }
