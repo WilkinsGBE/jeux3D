@@ -24,7 +24,7 @@ public class MainMenu2D : MonoBehaviour
     public void PlayGame()
     {
         //Test
-        SceneManager.LoadScene("WilkinsScene 1");
+        SceneManager.LoadScene("DohaScene1");
         //SceneManager.LoadScene("WilkinsScene 1");
         HideAllPanels();
         Time.timeScale = 1f;

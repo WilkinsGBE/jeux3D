@@ -20,7 +20,7 @@ public class LaserWall : MonoBehaviour
     void Update()
     {
         // Si le joueur n’est pas dans la zone ou GameManager absent → rien faire
-        if (!playerInZone || GameManager.instance == null)
+        if (!playerInZone || GameManager2D.instance == null)
             return;
 
         // 🔴 CONDITION 1 : pas assez d’ennemis tués

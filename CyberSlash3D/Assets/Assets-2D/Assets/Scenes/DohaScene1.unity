@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 347026721}
   - component: {fileID: 347026720}
   - component: {fileID: 347026719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paltform
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -2704,6 +2704,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 835330856624834330, guid: 580bd9c8b760c2e4588e9db726af625e, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 835330856624834330, guid: 580bd9c8b760c2e4588e9db726af625e, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2547697248576634847, guid: 580bd9c8b760c2e4588e9db726af625e, type: 3}
@@ -18626,7 +18630,7 @@ GameObject:
   - component: {fileID: 877847827}
   - component: {fileID: 877847826}
   - component: {fileID: 877847825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paltform (7)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -19619,7 +19623,7 @@ GameObject:
   - component: {fileID: 1168145723}
   - component: {fileID: 1168145722}
   - component: {fileID: 1168145726}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paltform (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21556,7 +21560,7 @@ Transform:
   m_GameObject: {fileID: 1559080108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -130.22487, y: -16.42805, z: -10}
+  m_LocalPosition: {x: -130.21077, y: -16.42799, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21744,7 +21748,7 @@ GameObject:
   - component: {fileID: 1619044052}
   - component: {fileID: 1619044051}
   - component: {fileID: 1619044050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paltform (6)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -21956,7 +21960,7 @@ GameObject:
   - component: {fileID: 1671798296}
   - component: {fileID: 1671798295}
   - component: {fileID: 1671798299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paltform (5)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -22326,7 +22330,7 @@ GameObject:
   - component: {fileID: 1757237285}
   - component: {fileID: 1757237284}
   - component: {fileID: 1757237288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paltform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23406,7 +23410,7 @@ GameObject:
   - component: {fileID: 1955772828}
   - component: {fileID: 1955772827}
   - component: {fileID: 1955772831}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paltform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
