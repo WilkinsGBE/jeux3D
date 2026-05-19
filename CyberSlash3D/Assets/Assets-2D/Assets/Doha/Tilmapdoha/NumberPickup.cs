@@ -39,7 +39,7 @@ public class NumberPickup : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Sécurité : vérifier que le GameManager existe
-            if (GameManager.instance == null)
+            if (GameManager2D.instance == null)
             {
                 Debug.LogError("GameManager NULL");
                 return;
