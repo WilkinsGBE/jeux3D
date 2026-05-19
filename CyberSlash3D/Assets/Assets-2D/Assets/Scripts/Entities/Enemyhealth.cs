@@ -38,4 +38,12 @@ public class Enemyhealth : MonoBehaviour
         GameManager2D.instance.CheckWinConditions();
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("OutOfBounds"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

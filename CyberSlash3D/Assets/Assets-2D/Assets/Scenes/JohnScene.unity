@@ -12528,6 +12528,14 @@ PrefabInstance:
       propertyPath: m_AngularDamping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3783582906752811710, guid: 18deaf947f37eb94a91d9e670696e517, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081015385029740037, guid: 18deaf947f37eb94a91d9e670696e517, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5661429767392405012, guid: 18deaf947f37eb94a91d9e670696e517, type: 3}
       propertyPath: m_Mass
       value: 0.0001
@@ -12543,6 +12551,10 @@ PrefabInstance:
     - target: {fileID: 6689980801013596707, guid: 18deaf947f37eb94a91d9e670696e517, type: 3}
       propertyPath: m_AngularDamping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811879557145519968, guid: 18deaf947f37eb94a91d9e670696e517, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7061547190337894462, guid: 18deaf947f37eb94a91d9e670696e517, type: 3}
       propertyPath: m_LocalPosition.y
