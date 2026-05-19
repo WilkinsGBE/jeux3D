@@ -788,7 +788,7 @@ PrefabInstance:
     - target: {fileID: 6676559831059255795, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1908143725}
+      objectReference: {fileID: 199371901}
     - target: {fileID: 6676559831059255795, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlayGame
@@ -800,7 +800,7 @@ PrefabInstance:
     - target: {fileID: 7047913421766445027, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1908143725}
+      objectReference: {fileID: 199371901}
     - target: {fileID: 7047913421766445027, guid: ae47e8a157eebf045a502e8dcf9a4952, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenHowToPlay
@@ -2448,7 +2448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &724952308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4958,7 +4958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1410705788
 MonoBehaviour:
   m_ObjectHideFlags: 0
