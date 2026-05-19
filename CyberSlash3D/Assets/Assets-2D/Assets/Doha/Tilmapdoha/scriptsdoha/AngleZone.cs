@@ -19,6 +19,8 @@ public class AngleZone : MonoBehaviour
     public GameObject[] numbers;
 
     private bool activated = false;
+    private bool messageVisible = false;
+
 
     private void Start()
     {
@@ -32,7 +34,17 @@ public class AngleZone : MonoBehaviour
         else if (numbers.Length == 0)
             Debug.LogWarning("numbers ARRAY is EMPTY (drag objects in Inspector)");
     }
+    private void Update()
+    {
+        if (messageVisible && Input.GetKeyDown(KeyCode.E))
+        {
+            if (messageUI != null)
+                messageUI.SetActive(false);
 
+            messageVisible = false;
+            Debug.Log("UI hidden by player (E)");
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Trigger ENTER detected with: " + other.name);
@@ -62,6 +74,7 @@ public class AngleZone : MonoBehaviour
         else
         {
             messageUI.SetActive(true);
+            messageVisible = true;
             Debug.Log("messageUI ON");
         }
 
@@ -69,7 +82,7 @@ public class AngleZone : MonoBehaviour
         if (messageText != null)
         {
             messageText.text =
-                "Les anges ne peuvent être vaincus qu’en résolvant l’énigme.\nIndice : ordre → BDFH";
+                "Les ange ne peuvent être vaincus qu’en résolvant l’énigme.\n\n\nIndice : ordre → \nBDFH";
 
             Debug.Log("messageText updated");
         }
@@ -78,8 +91,6 @@ public class AngleZone : MonoBehaviour
             Debug.LogWarning("messageText is NULL");
         }
 
-        // Cache le message après quelques secondes
-        StartCoroutine(HideMessage());
 
         // Vérifie le spawner
         if (spawner == null)
