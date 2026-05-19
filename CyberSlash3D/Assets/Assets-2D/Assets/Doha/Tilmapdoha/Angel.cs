@@ -144,7 +144,7 @@ public class Angel : MonoBehaviour
             audioSource.PlayOneShot(deathSound);
         }
 
-        if (GameManager.instance != null)
+        if (GameManager2D.instance != null)
             GameManager2D.instance.LevelComplete();
 
         // Supprime l’ange de la scène

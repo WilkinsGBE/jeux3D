@@ -48,7 +48,7 @@ public class fireball : MonoBehaviour
 
             if (ph != null)
             {
-                ph.TakeDamage(Mathf.RoundToInt(damage)); ;
+                ph.TakeDamage((int)damage);
                 Destroy(gameObject);
                 return;
             }

@@ -8,7 +8,7 @@ public class DeathZone : MonoBehaviour
         // Vérifie si c’est le joueur
         if (other.CompareTag("Player"))
         {
-            if (GameManager2D.instance != null)
+            if (GameManager.instance != null)
             {
                 // Tue le joueur
                 GameManager2D.instance.PlayerDied();
