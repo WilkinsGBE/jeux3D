@@ -9,7 +9,7 @@ public class LocationUI : MonoBehaviour
     public CanvasGroup panelGroup;
     public TMP_Text locationText;
 
-    public float displayTime = 3f;
+    public float displayTime = 5f;
     public float fadeSpeed = 2f;
 
     private Coroutine currentRoutine;

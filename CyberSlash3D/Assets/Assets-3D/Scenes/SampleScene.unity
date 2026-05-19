@@ -23855,7 +23855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &776039363
 Transform:
   m_ObjectHideFlags: 0
@@ -40343,7 +40343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1279768061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -67986,7 +67986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e4af58a81228349a195964f1a5c4a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  locationName: Ruines de la chapelle
   audioSource: {fileID: 1774943797}
   locationSound: {fileID: 8300000, guid: c711c648e2c84a54b8f79023e57c8c8f, type: 3}
 --- !u!82 &1774943797
@@ -75724,7 +75723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -410, y: -94}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1982833875
@@ -75747,7 +75746,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ruines de la chapelle
+  m_text: "Zone John: Ruines de la chapelle\n\nBattez le Boss et r\xE9cup\xE9rer
+    la cl\xE9 en sortant.\n\nAttention: Le boss ressuscite les squelettes"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -75813,7 +75813,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -221.22478, y: 15.744952, z: -369.48636, w: -90.759834}
+  m_margin: {x: -156.9603, y: -293.52316, z: -1149.505, w: -99.53097}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

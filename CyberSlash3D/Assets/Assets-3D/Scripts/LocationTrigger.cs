@@ -2,7 +2,10 @@
 
 public class LocationTrigger : MonoBehaviour
 {
-    public string locationName = "Ruines de la chapelle";
+    string locationName =
+    "Zone John: Ruines de la chapelle\n\n" +
+    "Battez le Boss et récupérer la clé en sortant.\n\n" +
+    "Attention: Le boss ressuscite les squelettes";
 
     [Header("Audio")]
     public AudioSource audioSource;
