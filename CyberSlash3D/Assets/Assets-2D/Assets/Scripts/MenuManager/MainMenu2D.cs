@@ -16,6 +16,11 @@ public class MenuManager : MonoBehaviour
     public GameObject InstructionMonde2D;
     public GameObject InstructionMonde3D;
 
+    [Header("Pause Panel")]
+    public GameObject PauseMenuPanel2D;
+
+    private bool isPaused = false;
+
     [Header("Old Gameplay Panels")]
     public GameObject PlayerDeadPanel;
     public GameObject levelCompletePanel;
@@ -56,8 +61,22 @@ public class MenuManager : MonoBehaviour
         MenuPrincipale.SetActive(true);
         Time.timeScale = 1f;
 
+        if (menuMusicSource != null && !menuMusicSource.isPlaying)
+            menuMusicSource.Play();
+
         LoadPlayerName();
         ValidateNicknameInput();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
     }
 
     private void StopMenuMusic()
@@ -198,6 +217,18 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void RestartFromPause()
+    {
+        isPaused = false;
+
+        if (PauseMenuPanel2D != null)
+            PauseMenuPanel2D.SetActive(false);
+
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void NextLevel()
     {
         Debug.Log("Next level clicked");
@@ -214,6 +245,10 @@ public class MenuManager : MonoBehaviour
         if (currentScene == 3)
         {
             StopMenuMusic();
+
+            if (PersistentUI2D.instance != null)
+                Destroy(PersistentUI2D.instance.gameObject);
+
             Play3DLevel1();
         }
         else if (currentScene == 4)
@@ -287,6 +322,37 @@ public class MenuManager : MonoBehaviour
         OpenPanel(Menu3D);
     }
 
+    public void PauseGame()
+    {
+        Debug.Log("PauseGame called");
+
+        isPaused = true;
+
+        HideAllPanels();
+
+        if (PauseMenuPanel2D != null)
+        {
+            PauseMenuPanel2D.SetActive(true);
+            Debug.Log("Pause panel activated");
+        }
+        else
+        {
+            Debug.LogError("PauseMenuPanel2D is NOT assigned!");
+        }
+
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+
+        if (PauseMenuPanel2D != null)
+            PauseMenuPanel2D.SetActive(false);
+
+        Time.timeScale = 1f;
+    }
+
     public void HideAllPanels()
     {
         if (MenuPrincipale != null)
@@ -321,6 +387,9 @@ public class MenuManager : MonoBehaviour
 
         if (levelCompletePanel != null)
             levelCompletePanel.SetActive(false);
+
+        if (PauseMenuPanel2D != null)
+            PauseMenuPanel2D.SetActive(false);
     }
 
     public void HidePlayerDeadPanel()
