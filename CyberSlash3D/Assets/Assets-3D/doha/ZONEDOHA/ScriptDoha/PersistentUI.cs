@@ -17,6 +17,9 @@ public class PersistentUI : MonoBehaviour
     [Header("Victory Score")]
     public TMP_Text victoryScoreText;
 
+    [Header("HUD Player Name")]
+    public TMP_Text hudPlayerNameText;
+
     void Awake()
     {
         // Vérifie si une instance existe déjà
@@ -40,14 +43,21 @@ public class PersistentUI : MonoBehaviour
 
     void Start()
     {
-        // cache tous les menus au début
         HideAll();
+        UpdateHUDPlayerName();
     }
 
     // appelé automatiquement quand une scène est chargée
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         HideAll();
+        UpdateHUDPlayerName();
+
+        if (hudPlayerNameText != null)
+        {
+            bool isMenu = scene.name == "MainMenu";
+            hudPlayerNameText.gameObject.SetActive(!isMenu);
+        }
     }
 
     // ===================== DEATH UI =====================
@@ -111,5 +121,16 @@ public class PersistentUI : MonoBehaviour
     {
         // évite les erreurs quand objet détruit
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void UpdateHUDPlayerName()
+    {
+        string playerName = PlayerPrefs.GetString("PlayerName", "Joueur");
+
+        if (hudPlayerNameText != null)
+        {
+            hudPlayerNameText.text = playerName;
+            hudPlayerNameText.gameObject.SetActive(true);
+        }
     }
 }
