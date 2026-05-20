@@ -10,6 +10,12 @@ TagManager:
   - enemy
   - Player
   - eyes
+  - Platform
+  - CameraBounds
+  - Projectile
+  - enemies
+  - AccessCard
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
@@ -42,7 +48,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - ChaseZone
   m_SortingLayers:
   - name: Default
     uniqueID: 0
