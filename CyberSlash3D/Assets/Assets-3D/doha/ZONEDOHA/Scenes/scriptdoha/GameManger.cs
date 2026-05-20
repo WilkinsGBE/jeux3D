@@ -43,6 +43,13 @@ public class GameManager : MonoBehaviour
         else
             Debug.Log("PERSISTENT UI OK");
 
+        if (ui != null)
+        {
+            ui.ShowHUD();
+            ui.SetScore(score);
+            ui.SetTimer("00:00");
+        }
+
         UpdateHUD();
     }
 

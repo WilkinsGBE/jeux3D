@@ -187,6 +187,8 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        PlayerPrefs.DeleteKey("Total2DScore");
+
         PlayerPrefs.SetInt("StartInGameplay", 0);
         PlayerPrefs.Save();
 
@@ -249,6 +251,9 @@ public class MenuManager : MonoBehaviour
             if (PersistentUI2D.instance != null)
                 Destroy(PersistentUI2D.instance.gameObject);
 
+            PlayerPrefs.SetInt("Show3DHUD", 1);
+            PlayerPrefs.Save();
+
             Play3DLevel1();
         }
         else if (currentScene == 4)
@@ -289,6 +294,9 @@ public class MenuManager : MonoBehaviour
     {
         StopMenuMusic();
 
+        if (PersistentUI2D.instance != null)
+            Destroy(PersistentUI2D.instance.gameObject);
+
         PlayerPrefs.SetInt("StartInGameplay", 1);
         PlayerPrefs.Save();
 
@@ -299,6 +307,9 @@ public class MenuManager : MonoBehaviour
     {
         StopMenuMusic();
 
+        if (PersistentUI2D.instance != null)
+            Destroy(PersistentUI2D.instance.gameObject);
+
         PlayerPrefs.SetInt("StartInGameplay", 1);
         PlayerPrefs.Save();
 
@@ -308,6 +319,9 @@ public class MenuManager : MonoBehaviour
     public void Play3DLevel3()
     {
         StopMenuMusic();
+
+        if (PersistentUI2D.instance != null)
+            Destroy(PersistentUI2D.instance.gameObject);
 
         PlayerPrefs.SetInt("StartInGameplay", 1);
         PlayerPrefs.Save();

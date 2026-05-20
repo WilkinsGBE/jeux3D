@@ -75,7 +75,6 @@ public class MainMenu : MonoBehaviour
     {
         StopMenuMusic();
 
-        // ✅ START AMBIENT MUSIC HERE
         if (GameManager.instance != null)
             GameManager.instance.PlayAmbientMusic();
 
@@ -86,6 +85,14 @@ public class MainMenu : MonoBehaviour
 
         if (GameHUD != null)
             GameHUD.SetActive(true);
+
+        // ADD THIS
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.ShowHUD();
+            UIManager.instance.SetScore(PlayerPrefs.GetInt("Total2DScore", 0));
+            UIManager.instance.SetTimer("00:00");
+        }
 
         Time.timeScale = 1f;
 
