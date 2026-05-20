@@ -39,6 +39,7 @@ public class GameManager2D : MonoBehaviour
     private int baseScore;
     private float finalMultiplier;
     private int finalScore;
+    private const string TotalScoreKey = "Total2DScore";
 
     [Header("Timer")]
     public float timer = 0f;
@@ -148,6 +149,11 @@ public class GameManager2D : MonoBehaviour
 
         Time.timeScale = 1f;
 
+        score = PlayerPrefs.GetInt(TotalScoreKey, 0);
+
+        if (Score != null)
+            Score.text = "Score : " + score;
+
         hasAccessCard = false;
         levelCompleted = false;
         isDead = false;
@@ -186,11 +192,15 @@ public class GameManager2D : MonoBehaviour
         levelCompleted = true;
         timerRunning = false;
 
-        baseScore = score;
+        int previousTotal = PlayerPrefs.GetInt(TotalScoreKey, 0);
+        int levelBaseScore = score;
         finalMultiplier = CalculateTimeMultiplier();
-        finalScore = Mathf.RoundToInt(baseScore * finalMultiplier);
+        int levelFinalScore = Mathf.RoundToInt(levelBaseScore * finalMultiplier);
 
-        score = finalScore;
+        score = previousTotal + levelFinalScore;
+
+        PlayerPrefs.SetInt(TotalScoreKey, score);
+        PlayerPrefs.Save();
 
         if (Score != null)
             Score.text = "Score : " + score;

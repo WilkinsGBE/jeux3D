@@ -3,9 +3,6 @@ using UnityEngine;
 // Ce script gère la victoire quand le joueur entre dans le bateau
 public class Boat : MonoBehaviour
 {
-    [Header("Victory UI")]
-    public GameObject victoryMenu; // Menu de victoire affiché à la fin du jeu
-
     // ===================== COLLISION =====================
     void OnTriggerEnter(Collider other)
     {
@@ -17,21 +14,12 @@ public class Boat : MonoBehaviour
         {
             Debug.Log("WIN GAME");
 
-            // Affiche le menu de victoire
-            if (victoryMenu != null)
-                victoryMenu.SetActive(true);
-
-            // Pause du jeu
-            Time.timeScale = 0f;
-
-            // Débloque la souris
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (GameManager.instance != null)
+                GameManager.instance.WinGame();
         }
         else
         {
-            // Si pas de clé
-            Debug.Log(" Tu n'as pas la clé !");
+            Debug.Log("Tu n'as pas la clé !");
         }
     }
 }

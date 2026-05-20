@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PersistentUI : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class PersistentUI : MonoBehaviour
     [Header("UI Panels")]
     public GameObject DeathMenuPanel;
     public GameObject VictoryMenuPanel;
+
+    [Header("Victory Player Name")]
+    public TMP_Text victoryPlayerNameText;
+
+    [Header("Victory Score")]
+    public TMP_Text victoryScoreText;
 
     void Awake()
     {
@@ -63,6 +70,20 @@ public class PersistentUI : MonoBehaviour
     public void ShowVictory()
     {
         HideAll();
+
+        string playerName =
+            PlayerPrefs.GetString("PlayerName", "Joueur");
+
+        if (victoryPlayerNameText != null)
+            victoryPlayerNameText.text =
+                "Bravo " + playerName + " !";
+
+        int totalScore =
+            PlayerPrefs.GetInt("Total2DScore", 0);
+
+        if (victoryScoreText != null)
+            victoryScoreText.text =
+                "Score Total : " + totalScore;
 
         if (VictoryMenuPanel != null)
             VictoryMenuPanel.SetActive(true);

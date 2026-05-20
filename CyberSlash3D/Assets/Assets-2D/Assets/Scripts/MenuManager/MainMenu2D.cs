@@ -263,6 +263,9 @@ public class MenuManager : MonoBehaviour
 
     public void Play2DLevel1()
     {
+        PlayerPrefs.DeleteKey("Total2DScore");
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("WilkinsScene 1"); 
         HideAllPanels();
         Time.timeScale = 1f;

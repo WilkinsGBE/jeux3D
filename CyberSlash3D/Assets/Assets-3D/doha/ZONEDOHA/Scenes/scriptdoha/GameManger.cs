@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GAME MANAGER START");
 
+        score = PlayerPrefs.GetInt("Total2DScore", 0);
+
         if (ui == null)
             Debug.LogError("UI MANAGER NON ASSIGNÉ !");
         else
@@ -79,7 +81,8 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
-        Debug.Log("Score: " + score);
+        PlayerPrefs.SetInt("Total2DScore", score);
+        PlayerPrefs.Save();
 
         if (ui != null)
             ui.SetScore(score);
