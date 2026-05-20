@@ -36870,7 +36870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d63ca1f4ff79bc4e9b2b5dee6c1982f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  mouseSensitivity: 300
+  mouseSensitivity: 1000
   minPitch: -30
   maxPitch: 60
 --- !u!114 &1158927025
@@ -85794,6 +85794,10 @@ PrefabInstance:
     - target: {fileID: 3438248662769921307, guid: 784d8637d009e44428e3d50c461837b1, type: 3}
       propertyPath: groundMask.m_Bits
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438248662769921307, guid: 784d8637d009e44428e3d50c461837b1, type: 3}
+      propertyPath: rotationSmoothTime
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3438248662769921307, guid: 784d8637d009e44428e3d50c461837b1, type: 3}
       propertyPath: stickToGroundForce
