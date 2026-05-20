@@ -166,9 +166,13 @@ public class Terminal : MonoBehaviour
         terminalText.gameObject.SetActive(true);
         terminalText.text = $"Terminal {terminalCount}/{requiredTerminals}";
 
-        yield return new WaitForSeconds(2f);
-
-        terminalText.gameObject.SetActive(false);
+        // Disparait seulement si objectif atteint (2/2)
+        if (terminalCount >= requiredTerminals)
+        {
+            yield return new WaitForSeconds(2f);
+            terminalText.gameObject.SetActive(false);
+        }
+        // Sinon reste affiché jusqu'au prochain terminal
     }
 
     // ===================== CAMERA SHAKE =====================

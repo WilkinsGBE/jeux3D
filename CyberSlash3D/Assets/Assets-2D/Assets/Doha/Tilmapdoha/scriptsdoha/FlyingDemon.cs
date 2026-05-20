@@ -162,6 +162,8 @@ public class FlyingDemon : MonoBehaviour
 
         // Stop mouvement
         rb.linearVelocity = Vector2.zero;
+         rb.gravityScale = 0f;     
+    rb.bodyType = RigidbodyType2D.Kinematic;
 
         // Animation mort
         animator.SetBool("isAttacking", false);

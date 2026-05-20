@@ -90,12 +90,12 @@ public class ZombieAi : MonoBehaviour, IDamageable
     {
         if (isDead) return;
 
-        Debug.Log("🧟 Zombie a reçu des dégâts : " + dmg +
+        Debug.Log("Zombie a reçu des dégâts : " + dmg +
                   " | HP restant avant hit = " + health);
 
         health -= dmg;
 
-        Debug.Log("❤️ Zombie HP après dégâts = " + health);
+        Debug.Log("Zombie HP après dégâts = " + health);
 
 
         if (audioSource && damageSound)
@@ -105,7 +105,7 @@ public class ZombieAi : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
-            Debug.Log("💀 Zombie va mourir (HP <= 0)");
+            Debug.Log(" Zombie va mourir (HP <= 0)");
             Die();
         }
     }
@@ -146,9 +146,16 @@ public class ZombieAi : MonoBehaviour, IDamageable
 
         enemiesKilled++;
 
-        Debug.Log("💀 Enemy killed ! Total = " + enemiesKilled);
+        Debug.Log(" Enemy killed ! Total = " + enemiesKilled);
 
-        UpdateKillUI();
+        // Affiche le texte seulement à partir du premier kill
+        if (enemiesKilledText != null)
+        {
+            if (!enemiesKilledText.gameObject.activeSelf)
+                enemiesKilledText.gameObject.SetActive(true);
+
+            enemiesKilledText.text = "Enemies killed : " + enemiesKilled;
+        }
 
         if (audioSource && deathSound)
             audioSource.PlayOneShot(deathSound);
@@ -193,5 +200,5 @@ public class ZombieAi : MonoBehaviour, IDamageable
         if (p != null)
             player = p.transform;
     }
-    
+
 }
