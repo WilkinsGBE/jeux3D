@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     public GameObject GameHUD;
     public GameObject PauseMenuPanel;
 
+    public GameObject MenuPrincipalPanel;
+
     [Header("Menu Music")]
     public AudioSource menuMusicSource;
 
@@ -146,17 +148,18 @@ public class MainMenu : MonoBehaviour
 
     public void OpenMainMenu()
     {
-        StopMenuMusic();
+        Time.timeScale = 1f;
+
+        PlayerPrefs.SetInt("StartInGameplay", 0);
+        PlayerPrefs.Save();
 
         if (GameManager.instance != null)
             GameManager.instance.StopAmbientMusic();
 
-        Time.timeScale = 1f;
+        if (PersistentUI2D.instance != null)
+            Destroy(PersistentUI2D.instance.gameObject);
 
-        PlayerPrefs.SetInt(StartInGameplayKey, 0);
-        PlayerPrefs.Save();
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     private IEnumerator LockCursorNextFrame()
