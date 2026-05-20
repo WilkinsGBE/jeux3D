@@ -106,11 +106,11 @@ public class MenuManager : MonoBehaviour
 
         if (selectedMode == SelectedMode.Mode2D)
         {
-            OpenPanel(Menu2D);
+            OpenPanel(InstructionMonde2D);
         }
         else if (selectedMode == SelectedMode.Mode3D)
         {
-            OpenPanel(Menu3D);
+            OpenPanel(InstructionMonde3D);
         }
         else
         {
@@ -166,9 +166,17 @@ public class MenuManager : MonoBehaviour
 
     public void OpenMainMenu()
     {
-        PersistentUI2D.instance.HideDeathPanel();
-        PersistentUI2D.instance.HideLevelCompletePanel();
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+
+        PlayerPrefs.SetInt("StartInGameplay", 0);
+        PlayerPrefs.Save();
+
+        if (PersistentUI2D.instance != null)
+        {
+            Destroy(PersistentUI2D.instance.gameObject);
+        }
+
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void QuitGame()
@@ -196,6 +204,7 @@ public class MenuManager : MonoBehaviour
 
         PersistentUI2D.instance.HideDeathPanel();
         PersistentUI2D.instance.HideLevelCompletePanel();
+
         HideScoreDetails();
 
         Time.timeScale = 1f;
@@ -204,7 +213,12 @@ public class MenuManager : MonoBehaviour
 
         if (currentScene == 3)
         {
-            SceneManager.LoadScene("MainMenu");
+            StopMenuMusic();
+            Play3DLevel1();
+        }
+        else if (currentScene == 4)
+        {
+            OpenMainMenu();
         }
         else
         {
@@ -263,17 +277,44 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
+    public void ContinueFromInstruction2D()
+    {
+        OpenPanel(Menu2D);
+    }
+
+    public void ContinueFromInstruction3D()
+    {
+        OpenPanel(Menu3D);
+    }
+
     public void HideAllPanels()
     {
-        MenuPrincipale.SetActive(false);
-        MenuSaisieSurnom.SetActive(false);
-        MenuApropos.SetActive(false);
-        Menu2D.SetActive(false);
-        Menu3D.SetActive(false);
-        Histoire2D.SetActive(false);
-        Histoire3D.SetActive(false);
-        InstructionMonde2D.SetActive(false);
-        InstructionMonde3D.SetActive(false);
+        if (MenuPrincipale != null)
+            MenuPrincipale.SetActive(false);
+
+        if (MenuSaisieSurnom != null)
+            MenuSaisieSurnom.SetActive(false);
+
+        if (MenuApropos != null)
+            MenuApropos.SetActive(false);
+
+        if (Menu2D != null)
+            Menu2D.SetActive(false);
+
+        if (Menu3D != null)
+            Menu3D.SetActive(false);
+
+        if (Histoire2D != null)
+            Histoire2D.SetActive(false);
+
+        if (Histoire3D != null)
+            Histoire3D.SetActive(false);
+
+        if (InstructionMonde2D != null)
+            InstructionMonde2D.SetActive(false);
+
+        if (InstructionMonde3D != null)
+            InstructionMonde3D.SetActive(false);
 
         if (PlayerDeadPanel != null)
             PlayerDeadPanel.SetActive(false);

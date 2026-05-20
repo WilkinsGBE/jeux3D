@@ -43,7 +43,7 @@ public class Enemyhealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("OutOfBounds"))
         {
-            Destroy(gameObject);
+            DestroyEnemy();
         }
     }
 }
