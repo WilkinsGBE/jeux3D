@@ -3390,7 +3390,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "L\u2019ORIGINE \u2013 Cyber Slash\r\nDans un monde cyberpunk ravag\xE9,
+    la Corporation Nexus contr\xF4le tout. Elle capture les meilleurs guerriers et
+    les transforme de force en cyborgs pour servir ses objectifs.\r\nParmi eux, un
+    guerrier refuse d\u2019ob\xE9ir. On l\u2019appelle Kaito.\r\nNexus d\xE9truit
+    sa vie et l\u2019enferme dans des mondes artificiels cach\xE9s pour tester, contr\xF4ler
+    et briser sa volont\xE9.\r\n2D \u2013 La Vengeance\r\n\r\nKaito se retrouve pi\xE9g\xE9
+    dans une simulation en 2D, une version contr\xF4l\xE9e de la r\xE9alit\xE9.\r\nIl
+    doit se battre dans les rues d\u2019une cit\xE9 remplie de robots et d\u2019ennemis.\r\nIl
+    progresse vers le c\u0153ur de Nexus : une \xE9glise corrompue, prot\xE9g\xE9e
+    par les \u201CAnges de Nexus\u201D.\r\nDans cette derni\xE8re zone, Kaito doit
+    r\xE9soudre une \xE9nigme et vaincre ces entit\xE9s pour briser la simulation
+    et s\u2019\xE9chapper."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4283,7 +4294,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "3D \u2013 L\u2019\xC9vasion\r\n\r\nCinq ans plus tard, le monde est en
+    ruines.Kaito est libre, mais la guerre contre Nexus n\u2019est pas termin\xE9e.
+    Il re\xE7oit une derni\xE8re mission : d\xE9truire les derni\xE8res zones de
+    contr\xF4le et fuir d\xE9finitivement.\r\nIl traverse trois zones :\r\nUn labyrinthe,
+    rempli de dangers et de pi\xE8ges.\r\nUne chapelle, o\xF9 il affronte un boss
+    puissant.\r\nUn port, o\xF9 il active les derniers terminaux et r\xE9cup\xE8re
+    la cl\xE9 du bateau."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

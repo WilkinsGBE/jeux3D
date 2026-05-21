@@ -192,12 +192,15 @@ public class GameManager2D : MonoBehaviour
         levelCompleted = true;
         timerRunning = false;
 
-        int previousTotal = PlayerPrefs.GetInt(TotalScoreKey, 0);
-        int levelBaseScore = score;
-        finalMultiplier = CalculateTimeMultiplier();
-        int levelFinalScore = Mathf.RoundToInt(levelBaseScore * finalMultiplier);
+        baseScore = score;
 
-        score = previousTotal + levelFinalScore;
+        finalMultiplier = CalculateTimeMultiplier();
+
+        finalScore = Mathf.RoundToInt(baseScore * finalMultiplier);
+
+        int previousTotal = PlayerPrefs.GetInt(TotalScoreKey, 0);
+
+        score = previousTotal + finalScore;
 
         PlayerPrefs.SetInt(TotalScoreKey, score);
         PlayerPrefs.Save();
